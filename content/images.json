@@ -1,0 +1,34 @@
+{
+  "hero": { 
+    "src": "https://images.unsplash.com/photo-1519710164239-da123dc03ef4", 
+    "alt": "Warm wooden lamp glowing", 
+    "width": 2000, 
+    "height": 1333 
+  },
+  "gallery": [
+    { 
+      "src": "https://images.unsplash.com/photo-1524758631624-e2822e304c36", 
+      "alt": "Detail of wood grain", 
+      "width": 1800, 
+      "height": 1200 
+    },
+    { 
+      "src": "https://images.unsplash.com/photo-1519710164239-da123dc03ef4", 
+      "alt": "Ambient pendant light", 
+      "width": 2000, 
+      "height": 1333 
+    },
+    { 
+      "src": "https://images.unsplash.com/photo-1493666438817-866a91353ca9", 
+      "alt": "Lamp in living room", 
+      "width": 2000, 
+      "height": 1333 
+    },
+    { 
+      "src": "https://images.unsplash.com/photo-1524758631624-e2822e304c36", 
+      "alt": "Workshop finishing", 
+      "width": 1800, 
+      "height": 1200 
+    }
+  ]
+}

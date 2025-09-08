@@ -1,0 +1,38 @@
+[
+  {
+    "id": "fjord-01",
+    "name": "Fjord",
+    "wood": "Oak",
+    "colorTempK": 2700,
+    "size": "Ø 30 cm",
+    "priceRange": "NOK 3,900–5,500",
+    "images": [
+      { "src": "https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0", "alt": "Oak shade lamp", "width": 1600, "height": 1200 }
+    ],
+    "description": "Soft, warm light accentuates oak grain."
+  },
+  {
+    "id": "nord-02",
+    "name": "Nord",
+    "wood": "Walnut",
+    "colorTempK": 2700,
+    "size": "H 45 cm",
+    "priceRange": "NOK 4,900–6,900",
+    "images": [
+      { "src": "https://images.unsplash.com/photo-1541534401786-2077eed87a72", "alt": "Walnut pendant lamp", "width": 1600, "height": 1200 }
+    ],
+    "description": "Deep tone with refined glow."
+  },
+  {
+    "id": "lyng-03",
+    "name": "Lyng",
+    "wood": "Birch",
+    "colorTempK": 3000,
+    "size": "Ø 25 cm",
+    "priceRange": "NOK 3,500–4,800",
+    "images": [
+      { "src": "https://images.unsplash.com/photo-1505692794403-34d4982cc0f8", "alt": "Birch table lamp", "width": 1600, "height": 1200 }
+    ],
+    "description": "Light Nordic finish for airy rooms."
+  }
+]
