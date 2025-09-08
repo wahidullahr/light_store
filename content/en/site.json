@@ -1,0 +1,10 @@
+{
+  "name": "Tindra",
+  "tagline": "Where light meets artistry - handcrafted wooden lamps that sparkle with Nordic soul.",
+  "localeDefault": "en",
+  "ctaPrimary": { "label": "Contact for pricing", "href": "#contact" },
+  "ctaSecondary": { "label": "View collection", "href": "#products" },
+  "socials": [{ "label": "Instagram", "href": "https://instagram.com/tindrawoodcraft" }],
+  "contact": { "email": "hello@tindra.no" },
+  "badges": ["Handcrafted in Norway", "Sustainably sourced wood", "2-year warranty"]
+}

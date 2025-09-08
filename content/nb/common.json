@@ -1,0 +1,64 @@
+{
+  "navigation": {
+    "home": "Hjem",
+    "products": "Produkter",
+    "about": "Om oss",
+    "contact": "Kontakt",
+    "languageSwitch": "English"
+  },
+  "sections": {
+    "products": {
+      "title": "Våre lamper",
+      "subtitle": "Hver lampe er unikt håndlaget med omhu og presisjon."
+    },
+    "craft": {
+      "title": "Håndverk og materialer",
+      "subtitle": "Bærekraftig treverk fra norske skoger",
+      "content": "Vi bruker kun førsteklasses treverk fra bærekraftig skogbruk. Hver lampe er formet for hånd og ferdigstilt med naturlige oljer som fremhever trevirkets skjønnhet."
+    },
+    "testimonials": {
+      "title": "Hva kundene sier"
+    },
+    "gallery": {
+      "title": "Galleri",
+      "subtitle": "Se våre lamper i forskjellige miljøer"
+    },
+    "process": {
+      "title": "Vår prosess",
+      "steps": [
+        {
+          "title": "Utvalg",
+          "description": "Vi velger ut det fineste trevirket fra bærekraftige kilder."
+        },
+        {
+          "title": "Forming",
+          "description": "Hver lampe formes for hånd med tradisjonelle teknikker."
+        },
+        {
+          "title": "Finishing",
+          "description": "Naturlige oljer gir en vakker og holdbar overflate."
+        }
+      ]
+    },
+    "faq": {
+      "title": "Ofte stilte spørsmål"
+    },
+    "cta": {
+      "title": "Klar til å lyse opp hjemmet ditt?",
+      "subtitle": "Ta kontakt for en uforpliktende samtale om dine ønsker.",
+      "button": "Kontakt oss"
+    }
+  },
+  "footer": {
+    "company": "Nordlys Trelys",
+    "description": "Håndlagde trelamper med varmt, nordisk uttrykk.",
+    "links": {
+      "about": "Om oss",
+      "products": "Produkter",
+      "contact": "Kontakt",
+      "privacy": "Personvern",
+      "terms": "Vilkår"
+    },
+    "copyright": "© 2024 Nordlys Trelys. Alle rettigheter forbeholdt."
+  }
+}
