@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Color palette */
+    --color-midnight: #0B0B0B;
+    --color-cream: #F6F3EC;
+    --color-amber: #FFB703;
+    --color-amber-dark: #E8A502;
+    --color-forest: #2D5016;
+    --color-stone: #8D7B68;
+    
+    /* Typography */
+    --font-fraunces: 'Fraunces', serif;
+    --font-inter: 'Inter', sans-serif;
+    
+    /* Spacing */
+    --section-padding: 5rem;
+    --container-max-width: 80rem;
+    
+    /* Borders */
+    --border-radius: 0.5rem;
+    --border-color: rgb(51 65 85);
+    
+    /* Shadows */
+    --shadow-soft: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-glow: 0 0 20px rgb(255 183 3 / 0.3);
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: var(--color-midnight);
+    color: var(--color-cream);
+    font-family: var(--font-inter);
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-fraunces);
+  }
+}
+
+@layer components {
+  .section {
+    @apply py-[var(--section-padding)] px-4;
+  }
+  
+  .container {
+    @apply max-w-[var(--container-max-width)] mx-auto;
+  }
+  
+  .btn-primary {
+    @apply bg-[var(--color-amber)] text-[var(--color-midnight)] px-8 py-4 rounded-[var(--border-radius)] font-semibold transition-all duration-300 hover:bg-[var(--color-amber-dark)] hover:shadow-[var(--shadow-glow)] focus:outline-none focus:ring-2 focus:ring-[var(--color-amber)] focus:ring-offset-2 focus:ring-offset-[var(--color-midnight)];
+  }
+  
+  .btn-secondary {
+    @apply border-2 border-[var(--color-amber)] text-[var(--color-amber)] px-8 py-4 rounded-[var(--border-radius)] font-semibold transition-all duration-300 hover:bg-[var(--color-amber)] hover:text-[var(--color-midnight)] hover:shadow-[var(--shadow-glow)] focus:outline-none focus:ring-2 focus:ring-[var(--color-amber)] focus:ring-offset-2 focus:ring-offset-[var(--color-midnight)];
+  }
+  
+  .card {
+    @apply bg-slate-900/50 backdrop-blur-sm border border-[var(--border-color)] rounded-[var(--border-radius)] p-6 shadow-[var(--shadow-soft)];
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-r from-[var(--color-amber)] to-amber-300 bg-clip-text text-transparent;
+  }
+  
+  .glow {
+    @apply shadow-[var(--shadow-glow)];
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+  
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+  
+  .animation-delay-600 {
+    animation-delay: 600ms;
+  }
+  
+  .animation-delay-800 {
+    animation-delay: 800ms;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-midnight);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-amber);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-amber-dark);
+}
+
+/* Smooth focus transitions */
+@media (prefers-reduced-motion: no-preference) {
+  :focus {
+    transition: outline-offset 0.25s ease;
+    outline-offset: 2px;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}

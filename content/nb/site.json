@@ -1,0 +1,12 @@
+{
+  "name": "Tindra",
+  "tagline": "Hvor lys møter kunstneri - håndlagde trelamper som tindrer med nordisk sjel.",
+  "localeDefault": "nb",
+  "ctaPrimary": { "label": "Kontakt for pris", "href": "#kontakt" },
+  "ctaSecondary": { "label": "Se kolleksjonen", "href": "#produkter" },
+  "socials": [
+    { "label": "Instagram", "href": "https://instagram.com/tindratrekunst" }
+  ],
+  "contact": { "email": "hei@tindra.no", "phone": "+47 40 00 00 00" },
+  "badges": ["Håndlaget i Norge", "Bærekraftig treverk", "2 års garanti"]
+}

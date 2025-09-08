@@ -1,0 +1,64 @@
+{
+  "navigation": {
+    "home": "Home",
+    "products": "Products",
+    "about": "About",
+    "contact": "Contact",
+    "languageSwitch": "Norsk"
+  },
+  "sections": {
+    "products": {
+      "title": "Our lamps",
+      "subtitle": "Each lamp is uniquely handcrafted with care and precision."
+    },
+    "craft": {
+      "title": "Craft and materials",
+      "subtitle": "Sustainable wood from Norwegian forests",
+      "content": "We use only first-class wood from sustainable forestry. Each lamp is hand-shaped and finished with natural oils that highlight the beauty of the wood."
+    },
+    "testimonials": {
+      "title": "What customers say"
+    },
+    "gallery": {
+      "title": "Gallery",
+      "subtitle": "See our lamps in different environments"
+    },
+    "process": {
+      "title": "Our process",
+      "steps": [
+        {
+          "title": "Selection",
+          "description": "We select the finest wood from sustainable sources."
+        },
+        {
+          "title": "Shaping",
+          "description": "Each lamp is hand-shaped using traditional techniques."
+        },
+        {
+          "title": "Finishing",
+          "description": "Natural oils provide a beautiful and durable surface."
+        }
+      ]
+    },
+    "faq": {
+      "title": "Frequently asked questions"
+    },
+    "cta": {
+      "title": "Ready to light up your home?",
+      "subtitle": "Get in touch for a non-committal conversation about your wishes.",
+      "button": "Contact us"
+    }
+  },
+  "footer": {
+    "company": "Nordlys Woodlight",
+    "description": "Handcrafted wooden lamps with a warm Nordic feel.",
+    "links": {
+      "about": "About",
+      "products": "Products",
+      "contact": "Contact",
+      "privacy": "Privacy",
+      "terms": "Terms"
+    },
+    "copyright": "© 2024 Nordlys Woodlight. All rights reserved."
+  }
+}
