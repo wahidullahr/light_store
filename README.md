@@ -53,6 +53,26 @@ npm run dev
 
 Visit [http://localhost:3000](http://localhost:3000) to see the application.
 
+## ☁️ Deployment
+
+### Deploying to Netlify
+
+1. Push your code to a Git repository (GitHub, GitLab, or Bitbucket)
+2. Sign up or log in to [Netlify](https://netlify.com)
+3. Click "New site from Git" and select your repository
+4. Configure the deployment settings:
+   - Build command: `next build`
+   - Publish directory: `.next`
+5. Add environment variables in the Netlify UI:
+   - `NEXT_PUBLIC_SITE_URL`: Your Netlify site URL (e.g., `https://your-site-name.netlify.app`)
+6. Deploy the site
+
+### Deploying to Vercel
+
+1. Connect repository to Vercel
+2. Configure environment variables
+3. Deploy automatically on push to `main`
+
 ## 📁 Project Structure
 
 ```

@@ -32,7 +32,7 @@ export default function ContactPage({ params }: IContactPageProps) {
     setSubmitError('');
 
     try {
-      // Simulate form submission
+      // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1500));
       setSubmitSuccess(true);
       setFormData({ name: '', email: '', subject: '', message: '' });

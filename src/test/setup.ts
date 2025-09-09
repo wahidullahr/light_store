@@ -1,6 +1,7 @@
 import '@testing-library/jest-dom';
 import { cleanup } from '@testing-library/react';
 import { afterEach, vi } from 'vitest';
+import React from 'react';
 
 // Cleanup after each test
 afterEach(() => {
@@ -22,10 +23,14 @@ vi.mock('next/navigation', () => ({
 }));
 
 // Mock next-intl
-vi.mock('next-intl', () => ({
-  useTranslations: () => (key: string) => key,
-  useLocale: () => 'nb',
-}));
+vi.mock('next-intl', async () => {
+  const actual = await vi.importActual('next-intl');
+  return {
+    ...actual,
+    useTranslations: () => (key: string) => key,
+    useLocale: () => 'nb',
+  };
+});
 
 // Mock framer-motion to avoid animation issues in tests
 vi.mock('framer-motion', () => ({
@@ -45,11 +50,16 @@ vi.mock('framer-motion', () => ({
 }));
 
 // Mock Next.js Image component
-vi.mock('next/image', () => ({
-  default: (props: { src: string; alt: string; width?: number; height?: number }) => {
-    return props;
-  },
-}));
+vi.mock('next/image', () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const MockImage = (props: any) => {
+    return React.createElement('img', props);
+  };
+  return {
+    __esModule: true,
+    default: MockImage,
+  };
+});
 
 // Global test utilities
 global.ResizeObserver = vi.fn().mockImplementation(() => ({

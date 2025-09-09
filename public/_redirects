@@ -1,0 +1,11 @@
+# Redirect default locale to /nb
+/ /nb 301
+
+# Redirect root paths to locale-specific paths
+/products /nb/products 301
+/about /nb/about 301
+/contact /nb/contact 301
+/test /nb/test 301
+
+# API routes
+/api/* /.netlify/functions/:splat 200

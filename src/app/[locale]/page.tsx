@@ -1,3 +1,6 @@
+import { useTranslations } from 'next-intl';
+import Image from 'next/image';
+
 interface IPageProps {
   params: Promise<{ locale: string }>;
 }
@@ -134,13 +137,15 @@ export default async function HomePage({ params }: IPageProps) {
                   {/* Image Frame */}
                   <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-800/50 to-slate-900/50 p-1 backdrop-blur-sm">
                     <div className="overflow-hidden rounded-[1.3rem] bg-gradient-to-br from-slate-700/30 to-slate-800/30">
-                      <img
+                      <Image
                         src="/wooden-lamp.jpg"
                         alt={
                           locale === 'nb'
                             ? 'Håndlaget artikulert trelampe'
                             : 'Handcrafted articulated wooden lamp'
                         }
+                        width={600}
+                        height={750}
                         className="h-[750px] w-full transform object-cover transition-transform duration-700 group-hover:scale-105"
                       />
                     </div>
@@ -269,7 +274,7 @@ export default async function HomePage({ params }: IPageProps) {
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         strokeWidth={2}
-                        d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"
+                        d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 104 0 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"
                       />
                     </svg>
                   </div>
@@ -407,13 +412,15 @@ export default async function HomePage({ params }: IPageProps) {
                 <div className="absolute -inset-6 rounded-3xl bg-gradient-to-r from-amber-500/15 via-amber-400/25 to-amber-600/15 opacity-70 blur-2xl transition-opacity duration-700 group-hover:opacity-90"></div>
                 <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-800/40 to-slate-900/40 p-1 backdrop-blur-sm">
                   <div className="overflow-hidden rounded-[1.4rem] bg-gradient-to-br from-slate-700/20 to-slate-800/20">
-                    <img
+                    <Image
                       src="/wooden-imiddle-section.jpg"
                       alt={
                         locale === 'nb'
                           ? 'Tradisjonelt håndverk og moderne design'
                           : 'Traditional craftsmanship and modern design'
                       }
+                      width={800}
+                      height={750}
                       className="h-[750px] w-full transform object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                   </div>

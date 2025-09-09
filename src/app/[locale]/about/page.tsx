@@ -1,5 +1,7 @@
 'use client';
 
+import Image from 'next/image';
+
 interface IAboutPageProps {
   params: { locale: string };
 }
@@ -72,9 +74,11 @@ export default function AboutPage({ params }: IAboutPageProps) {
 
                   <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-800/50 to-slate-900/50 p-1 backdrop-blur-sm">
                     <div className="overflow-hidden rounded-[1.3rem] bg-gradient-to-br from-slate-700/30 to-slate-800/30">
-                      <img
+                      <Image
                         src="/wood1.jpg"
                         alt={locale === 'nb' ? 'Vår håndverksstudio' : 'Our craft studio'}
+                        width={600}
+                        height={500}
                         className="h-[500px] w-full object-cover transition-transform duration-1000"
                       />
                     </div>
@@ -345,9 +349,11 @@ export default function AboutPage({ params }: IAboutPageProps) {
               >
                 <div className="relative overflow-hidden rounded-xl">
                   <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 via-amber-400/5 to-amber-600/10 opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
-                  <img
-                    src={`/wood${index}.jpg`}
-                    alt={`${locale === 'nb' ? 'Verkstedsbilde' : 'Workshop image'} ${index}`}
+                  <Image
+                    src={`/wood${index + 1}.jpg`}
+                    alt={`${locale === 'nb' ? 'Verkstedsbilde' : 'Workshop image'} ${index + 1}`}
+                    width={400}
+                    height={320}
                     className="h-80 w-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>

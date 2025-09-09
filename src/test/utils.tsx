@@ -79,12 +79,8 @@ const mockMessages = {
       description: 'Beautiful oak lamp',
     },
   ],
-  testimonials: [
-    { quote: 'Amazing quality', name: 'John', location: 'Oslo' },
-  ],
-  faq: [
-    { q: 'Delivery time?', a: '3-4 weeks usually' },
-  ],
+  testimonials: [{ quote: 'Amazing quality', name: 'John', location: 'Oslo' }],
+  faq: [{ q: 'Delivery time?', a: '3-4 weeks usually' }],
 };
 
 interface AllTheProvidersProps {
@@ -105,14 +101,14 @@ const customRender = (
   options?: Omit<RenderOptions, 'wrapper'> & { locale?: string }
 ) => {
   const { locale, ...renderOptions } = options || {};
-  
+
   return render(ui, {
-    wrapper: ({ children }) => (
-      <AllTheProviders locale={locale}>{children}</AllTheProviders>
-    ),
+    wrapper: ({ children }) => <AllTheProviders locale={locale}>{children}</AllTheProviders>,
     ...renderOptions,
   });
 };
 
+// Re-export everything from testing-library
 export * from '@testing-library/react';
+// Override render method
 export { customRender as render };

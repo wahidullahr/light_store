@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@/test/utils';
-import Container from '../container';
+import Container from './container';
 
 describe('Container', () => {
   it('renders children correctly', () => {
@@ -9,7 +9,7 @@ describe('Container', () => {
         <div>Test content</div>
       </Container>
     );
-    
+
     expect(screen.getByText('Test content')).toBeInTheDocument();
   });
 
@@ -19,7 +19,7 @@ describe('Container', () => {
         <div>Test content</div>
       </Container>
     );
-    
+
     const containerElement = container.firstChild;
     expect(containerElement).toHaveClass('max-w-7xl', 'mx-auto', 'px-6');
   });
@@ -30,7 +30,7 @@ describe('Container', () => {
         <div>Test content</div>
       </Container>
     );
-    
+
     const containerElement = container.firstChild;
     expect(containerElement).toHaveClass('max-w-2xl');
   });
@@ -41,7 +41,7 @@ describe('Container', () => {
         <div>Test content</div>
       </Container>
     );
-    
+
     const containerElement = container.firstChild;
     expect(containerElement).toHaveClass('custom-class');
   });
@@ -49,14 +49,14 @@ describe('Container', () => {
   it('renders with all size variants', () => {
     const sizes = ['sm', 'md', 'lg', 'xl'] as const;
     const expectedClasses = ['max-w-2xl', 'max-w-4xl', 'max-w-6xl', 'max-w-7xl'];
-    
+
     sizes.forEach((size, index) => {
       const { container } = render(
         <Container size={size}>
           <div>Test</div>
         </Container>
       );
-      
+
       expect(container.firstChild).toHaveClass(expectedClasses[index]);
     });
   });

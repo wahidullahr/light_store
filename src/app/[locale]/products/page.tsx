@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 
 interface Product {
   id: number;
@@ -369,39 +370,51 @@ function ProductsContent({ locale, allProducts }: { locale: string; allProducts:
                     <div className="carousel-inner overflow-hidden rounded-[1.3rem] bg-gradient-to-br from-slate-700/30 to-slate-800/30">
                       {/* Rotating Images - Multiple high-quality wood images */}
                       <div className="carousel-slide relative">
-                        <img
+                        <Image
                           src="/wood1.jpg"
                           alt="Nordic Elegance Ceiling Lamp"
+                          width={800}
+                          height={600}
                           className="animate-carousel h-[600px] w-full object-cover transition-all duration-1000"
                           style={{ animationDelay: '0s' }}
                         />
-                        <img
+                        <Image
                           src="/wood3.jpg"
                           alt="Aurora Borealis Floor Lamp"
+                          width={800}
+                          height={600}
                           className="animate-carousel absolute inset-0 h-[600px] w-full object-cover opacity-0 transition-all duration-1000"
                           style={{ animationDelay: '2s' }}
                         />
-                        <img
+                        <Image
                           src="/wood5.jpg"
                           alt="Minimalist Midnight Pendant"
+                          width={800}
+                          height={600}
                           className="animate-carousel absolute inset-0 h-[600px] w-full object-cover opacity-0 transition-all duration-1000"
                           style={{ animationDelay: '4s' }}
                         />
-                        <img
+                        <Image
                           src="/wood7.jpg"
                           alt="Scandinavian Harmony Ceiling"
+                          width={800}
+                          height={600}
                           className="animate-carousel absolute inset-0 h-[600px] w-full object-cover opacity-0 transition-all duration-1000"
                           style={{ animationDelay: '6s' }}
                         />
-                        <img
+                        <Image
                           src="/wood9.jpg"
                           alt="Northern Strength Floor Lamp"
+                          width={800}
+                          height={600}
                           className="animate-carousel absolute inset-0 h-[600px] w-full object-cover opacity-0 transition-all duration-1000"
                           style={{ animationDelay: '8s' }}
                         />
-                        <img
+                        <Image
                           src="/wood11.jpg"
                           alt="Boreal Elegance Pendant"
+                          width={800}
+                          height={600}
                           className="animate-carousel absolute inset-0 h-[600px] w-full object-cover opacity-0 transition-all duration-1000"
                           style={{ animationDelay: '10s' }}
                         />
@@ -462,7 +475,7 @@ function ProductsContent({ locale, allProducts }: { locale: string; allProducts:
 
           {/* Product Grid - 3 Cards Per Row */}
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {displayProducts.map((product, index) => (
+            {displayProducts.map(product => (
               <div
                 key={product.id}
                 onClick={() => handleProductClick(product)}
@@ -470,9 +483,11 @@ function ProductsContent({ locale, allProducts }: { locale: string; allProducts:
               >
                 {/* Product Image with consistent aspect ratio */}
                 <div className="relative aspect-[4/3] overflow-hidden">
-                  <img
+                  <Image
                     src={product.image}
                     alt={product.name}
+                    width={400}
+                    height={300}
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                     loading="lazy"
                   />
@@ -604,11 +619,12 @@ function ProductsContent({ locale, allProducts }: { locale: string; allProducts:
                     className="relative overflow-hidden rounded-xl"
                     style={{ height: '700px', width: '100%' }}
                   >
-                    <img
+                    <Image
                       src={
                         selectedProduct.detailImages?.[currentImageIndex] || selectedProduct.image
                       }
                       alt={`${selectedProduct.name} - Image ${currentImageIndex + 1}`}
+                      fill
                       className="h-full w-full object-cover transition-all duration-500"
                     />
 
@@ -692,9 +708,10 @@ function ProductsContent({ locale, allProducts }: { locale: string; allProducts:
                         }`}
                         style={{ width: '80px', height: '60px' }}
                       >
-                        <img
+                        <Image
                           src={image}
                           alt={`${selectedProduct.name} thumbnail ${index + 1}`}
+                          fill
                           className="h-full w-full object-cover"
                         />
                       </button>
