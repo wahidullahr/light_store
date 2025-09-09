@@ -16,11 +16,11 @@ interface Product {
 }
 
 interface IProductsPageProps {
-  params: Promise<{ locale: string }>;
+  params: { locale: string };
 }
 
-export default async function ProductsPage({ params }: IProductsPageProps) {
-  const { locale } = await params;
+export default function ProductsPage({ params }: IProductsPageProps) {
+  const { locale } = params;
 
   // All products including extended collection (wood1-wood12)
   const allProducts = [

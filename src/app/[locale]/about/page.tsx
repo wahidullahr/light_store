@@ -1,13 +1,7 @@
-'use client';
-
 import Image from 'next/image';
 
-interface IAboutPageProps {
-  params: { locale: string };
-}
-
-export default function AboutPage({ params }: IAboutPageProps) {
-  const { locale } = params;
+export default async function AboutPage(props: PageProps<'/[locale]/about'>) {
+  const { locale } = await props.params;
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
