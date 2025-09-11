@@ -1,0 +1,59 @@
+# Dependencies
+node_modules
+
+# Build outputs
+.next
+out
+
+# Environment files
+.env*.local
+
+# IDE and editor files
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs
+*.log
+
+# Tests
+tests
+**/*.test.js
+**/*.test.ts
+**/*.spec.js
+**/*.spec.ts
+
+# Git
+.git
+.gitignore
+
+# Docker
+Dockerfile
+Dockerfile.dev
+docker-compose.yml
+docker-compose.prod.yml
+.dockerignore
+
+# Husky
+.husky
+
+# Netlify
+netlify
+
+# Other
+README.md
+DEPLOYMENT_NETLIFY.md
+lighthouserc.json
+playwright.config.ts
+vitest.config.ts
+eslint.config.mjs
+.prettierignore
+.prettierrc
+.lintstagedrc
+components.json

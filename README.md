@@ -53,6 +53,71 @@ npm run dev
 
 Visit [http://localhost:3000](http://localhost:3000) to see the application.
 
+## 🐳 Docker Setup
+
+If you don't have Docker installed, run the setup script:
+
+```
+./docker-setup.sh
+```
+
+This script will check for Docker installation and help you install Docker Desktop for Mac.
+
+For macOS users:
+
+- The script uses Homebrew to install Docker Desktop if not already installed
+- After installation, open Docker Desktop from your Applications folder
+- Wait for the Docker whale icon to appear in your menu bar
+- You may need to restart your terminal after Docker Desktop is running
+
+To easily open Docker Desktop on macOS:
+
+```bash
+./open-docker.sh
+```
+
+To verify your Docker installation is working correctly:
+
+```bash
+./test-docker.sh
+```
+
+To check detailed Docker status on macOS:
+
+```bash
+./check-docker.sh
+```
+
+For easier Docker management, you can also use the development script:
+
+```bash
+./docker-dev.sh          # Start containers
+./docker-dev.sh -b       # Start containers with build
+./docker-dev.sh down     # Stop containers
+./docker-dev.sh logs     # View logs
+./docker-dev.sh ps       # List containers
+```
+
+For production environments, use the production script:
+
+```
+./docker-prod.sh          # Start production containers
+./docker-prod.sh -b       # Start production containers with build
+./docker-prod.sh down     # Stop production containers
+./docker-prod.sh logs     # View production logs
+./docker-prod.sh ps       # List production containers
+```
+
+### Docker Files
+
+- `Dockerfile` - Production Docker configuration
+- `Dockerfile.dev` - Development Docker configuration
+- `docker-compose.yml` - Development Docker Compose configuration
+- `docker-compose.prod.yml` - Production Docker Compose configuration
+- `.dockerignore` - Files to exclude from Docker build
+
+```
+
 ## ☁️ Deployment
 
 ### Deploying to Netlify
@@ -76,56 +141,75 @@ Visit [http://localhost:3000](http://localhost:3000) to see the application.
 ## 📁 Project Structure
 
 ```
-├── .github/workflows/     # GitHub Actions CI/CD
-├── .vscode/              # VSCode workspace settings
-├── content/              # Bilingual content (NO/EN)
-│   ├── nb/              # Norwegian content
-│   ├── en/              # English content
-│   └── images.json      # Shared image configurations
-├── public/              # Static assets
+
+├── .github/workflows/ # GitHub Actions CI/CD
+├── .vscode/ # VSCode workspace settings
+├── content/ # Bilingual content (NO/EN)
+│ ├── nb/ # Norwegian content
+│ ├── en/ # English content
+│ └── images.json # Shared image configurations
+├── public/ # Static assets
 ├── src/
-│   ├── app/            # Next.js App Router pages
-│   │   ├── [locale]/   # Localized routes
-│   │   ├── globals.css # Global styles
-│   │   └── sitemap.ts  # SEO sitemap
-│   ├── components/     # React components
-│   │   ├── sections/   # Page sections
-│   │   └── ui/        # Reusable UI components
-│   ├── lib/           # Utilities and configurations
-│   └── test/          # Test utilities and setup
-├── tests/             # E2E tests (Playwright)
+│ ├── app/ # Next.js App Router pages
+│ │ ├── [locale]/ # Localized routes
+│ │ ├── globals.css # Global styles
+│ │ └── sitemap.ts # SEO sitemap
+│ ├── components/ # React components
+│ │ ├── sections/ # Page sections
+│ │ └── ui/ # Reusable UI components
+│ ├── lib/ # Utilities and configurations
+│ └── test/ # Test utilities and setup
+├── tests/ # E2E tests (Playwright)
 └── README.md
+
 ```
 
 ## 🎯 Available Scripts
 
 ### Development
 
-```bash
-npm run dev          # Start development server
-npm run build        # Build for production
-npm run start        # Start production server
-npm run lint         # Run ESLint
-npm run lint:fix     # Fix ESLint issues
+```
+
+npm run dev # Start development server
+npm run build # Build for production
+npm run start # Start production server
+npm run lint # Run ESLint
+npm run lint:fix # Fix ESLint issues
+
+```
+
+### Docker
+
+```
+
+docker-compose up --build # Start development container
+docker-compose -f docker-compose.prod.yml up --build # Start production container
+docker-compose down # Stop containers
+docker-compose logs # View container logs
+
 ```
 
 ### Testing
 
-```bash
-npm run test              # Run unit tests
-npm run test:ui           # Run tests with UI
-npm run test:coverage     # Run tests with coverage
-npm run test:e2e          # Run E2E tests
-npm run test:e2e:ui       # Run E2E tests with UI
-npm run test:e2e:headed   # Run E2E tests in headed mode
+```
+
+npm run test # Run unit tests
+npm run test:ui # Run tests with UI
+npm run test:coverage # Run tests with coverage
+npm run test:e2e # Run E2E tests
+npm run test:e2e:ui # Run E2E tests with UI
+npm run test:e2e:headed # Run E2E tests in headed mode
+
 ```
 
 ### Code Quality
 
-```bash
-npm run format           # Format code with Prettier
-npm run format:check     # Check code formatting
-npm run type-check       # Run TypeScript type checking
+```
+
+npm run format # Format code with Prettier
+npm run format:check # Check code formatting
+npm run type-check # Run TypeScript type checking
+
 ```
 
 ## 🌍 Internationalization
@@ -169,11 +253,14 @@ The application supports Norwegian (nb) and English (en) with:
 
 ### Environment Variables
 
-```bash
+```
+
 # .env.local
+
 NEXT_PUBLIC_SITE_URL=https://your-domain.com
 GOOGLE_SITE_VERIFICATION=your-verification-code
-PLAUSIBLE_DOMAIN=your-domain.com  # Optional analytics
+PLAUSIBLE_DOMAIN=your-domain.com # Optional analytics
+
 ```
 
 ### Deployment (Vercel)
@@ -272,47 +359,41 @@ PLAUSIBLE_DOMAIN=your-domain.com  # Optional analytics
 
 ### Build Issues
 
-```bash
+```
+
 # Clear Next.js cache
+
 rm -rf .next
 
 # Reinstall dependencies
+
 rm -rf node_modules package-lock.json
 npm install
+
 ```
 
 ### Test Failures
 
-```bash
+```
+
 # Update Playwright browsers
+
 npx playwright install
 
 # Run tests in debug mode
+
 npm run test:e2e:headed
+
 ```
 
 ### Type Errors
 
-```bash
+```
+
 # Check TypeScript configuration
+
 npm run type-check
 
 # Verify import paths
+
 # Ensure all interfaces are properly exported
-```
-
-## 📄 License
-
-This project is proprietary and confidential.
-
-## 🤝 Contributing
-
-1. Follow the established code style
-2. Add tests for new features
-3. Update documentation
-4. Ensure accessibility compliance
-5. Test across different browsers and devices
-
----
-
-**Built with ❤️ for premium Nordic craftsmanship**
