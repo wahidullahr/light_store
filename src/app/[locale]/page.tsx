@@ -1,4 +1,4 @@
-import { useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl'; // eslint-disable-line @typescript-eslint/no-unused-vars
 import Image from 'next/image';
 
 interface IPageProps {

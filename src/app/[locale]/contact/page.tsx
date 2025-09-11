@@ -40,6 +40,7 @@ export default function ContactPage({ params }: IContactPageProps) {
       // Reset success message after 5 seconds
       setTimeout(() => setSubmitSuccess(false), 5000);
     } catch (error) {
+      console.error('Error submitting contact form:', error);
       setSubmitError(
         locale === 'nb'
           ? 'Feil ved sending av melding. Vennligst prøv igjen.'
