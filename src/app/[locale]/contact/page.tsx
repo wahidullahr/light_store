@@ -154,15 +154,9 @@ export default function ContactPage({ params }: IContactPageProps) {
             </div>
 
             <h1 className="font-fraunces mb-4 text-3xl leading-[1.1] font-light tracking-tight text-slate-50 md:text-4xl lg:text-5xl xl:text-6xl">
-              {locale === 'nb' ? (
-                <span className="block bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 bg-clip-text font-normal text-transparent">
-                  La oss skape noe sammen
-                </span>
-              ) : (
-                <span className="block bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 bg-clip-text font-normal text-transparent">
-                  Let&#39;s create something together
-                </span>
-              )}
+              {locale === 'nb' ? 'La oss skape noe sammen'
+                : 'Let&#39;s create something together'
+              }
             </h1>
 
             <p className="mx-auto max-w-3xl text-lg leading-relaxed font-light tracking-wide text-slate-400 lg:text-xl">
