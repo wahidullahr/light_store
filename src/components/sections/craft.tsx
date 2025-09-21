@@ -136,7 +136,7 @@ export default function Craft() {
                   className="h-full w-full object-cover"
                   priority
                 />
-                
+
                 {/* Overlay for better text readability */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
               </div>
