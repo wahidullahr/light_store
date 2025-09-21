@@ -65,6 +65,15 @@ NEXT_PUBLIC_PLAUSIBLE_API_HOST=https://plausible.io
 
 ## Configuration Details
 
+### Vercel Configuration File
+
+This project includes a `vercel.json` file that configures:
+
+- Build settings for the Next.js application
+- Security headers for all routes
+- Environment variables for deployment
+- File inclusion rules for the build process
+
 ### Internationalization (i18n)
 
 Your application supports Norwegian (nb) and English (en) locales. The configuration includes:
@@ -82,7 +91,7 @@ The following redirects are configured in your Next.js middleware:
 
 ### Headers
 
-Security headers are configured in `next.config.ts`:
+Security headers are configured in both `next.config.ts` and `vercel.json`:
 
 - X-Frame-Options: DENY
 - X-Content-Type-Options: nosniff
