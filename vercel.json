@@ -14,12 +14,6 @@
       }
     }
   ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/public/$1"
-    }
-  ],
   "headers": [
     {
       "source": "/(.*)",
@@ -40,6 +34,6 @@
     }
   ],
   "env": {
-    "NEXT_PUBLIC_SITE_URL": "https://your-project-name.vercel.app"
+    "NEXT_PUBLIC_SITE_URL": "https://light-store.vercel.app"
   }
 }
