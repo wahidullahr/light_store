@@ -138,7 +138,7 @@ export default async function HomePage({ params }: IPageProps) {
                   <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-800/50 to-slate-900/50 p-1 backdrop-blur-sm">
                     <div className="overflow-hidden rounded-[1.3rem] bg-gradient-to-br from-slate-700/30 to-slate-800/30">
                       <Image
-                        src="/wooden-lamp.jpg"
+                        src="/home/hero-lamp.jpg"
                         alt={
                           locale === 'nb'
                             ? 'Håndlaget artikulert trelampe'
@@ -413,7 +413,7 @@ export default async function HomePage({ params }: IPageProps) {
                 <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-800/40 to-slate-900/40 p-1 backdrop-blur-sm">
                   <div className="overflow-hidden rounded-[1.4rem] bg-gradient-to-br from-slate-700/20 to-slate-800/20">
                     <Image
-                      src="/wooden-imiddle-section.jpg"
+                      src="/home/craft-section.jpg"
                       alt={
                         locale === 'nb'
                           ? 'Tradisjonelt håndverk og moderne design'

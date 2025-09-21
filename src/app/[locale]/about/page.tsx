@@ -17,6 +17,10 @@ export default async function AboutPage({ params }: IAboutPageProps) {
         <div className="bg-gradient-radial absolute top-1/4 -left-1/4 h-96 w-96 rounded-full from-amber-500/10 to-transparent blur-3xl"></div>
         <div className="bg-gradient-radial absolute -right-1/4 bottom-1/4 h-96 w-96 rounded-full from-amber-600/8 to-transparent blur-3xl"></div>
 
+        {/* Additional side decorations */}
+        <div className="absolute top-0 left-0 h-full w-32 bg-gradient-to-r from-amber-500/5 to-transparent"></div>
+        <div className="absolute top-0 right-0 h-full w-32 bg-gradient-to-l from-amber-600/5 to-transparent"></div>
+
         <div className="relative container mx-auto px-4">
           <div className="grid gap-16 lg:grid-cols-2 lg:items-center xl:gap-20">
             {/* Left Side - Content */}
@@ -67,17 +71,17 @@ export default async function AboutPage({ params }: IAboutPageProps) {
             {/* Right Side - Image */}
             <div className="relative">
               <div className="group relative">
-                <div className="relative mx-auto max-w-lg xl:max-w-xl">
+                <div className="relative mx-auto max-w-md">
                   <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-amber-500/20 via-amber-400/30 to-amber-600/20 opacity-60 blur-2xl transition-opacity duration-700 group-hover:opacity-80"></div>
 
-                  <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-800/50 to-slate-900/50 p-1 backdrop-blur-sm">
-                    <div className="overflow-hidden rounded-[1.3rem] bg-gradient-to-br from-slate-700/30 to-slate-800/30">
+                  <div className="relative overflow-hidden">
+                    <div className="overflow-hidden">
                       <Image
-                        src="/wood1.jpg"
+                        src="/about/studio1.jpg"
                         alt={locale === 'nb' ? 'Vår håndverksstudio' : 'Our craft studio'}
                         width={600}
                         height={500}
-                        className="h-[500px] w-full object-cover transition-transform duration-1000"
+                        className="aspect-[3/4] w-full object-cover transition-transform duration-1000"
                       />
                     </div>
                   </div>
@@ -324,6 +328,10 @@ export default async function AboutPage({ params }: IAboutPageProps) {
       <section className="relative py-24 lg:py-32">
         <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950"></div>
 
+        {/* Decorative side elements */}
+        <div className="absolute top-1/4 left-0 h-64 w-64 rounded-full bg-amber-500/5 blur-3xl"></div>
+        <div className="absolute right-0 bottom-1/4 h-64 w-64 rounded-full bg-amber-600/5 blur-3xl"></div>
+
         <div className="relative container mx-auto px-4">
           <div className="mb-20 text-center">
             <h2 className="font-fraunces mb-6 text-4xl font-light tracking-tight text-slate-100 md:text-5xl lg:text-6xl">
@@ -340,24 +348,35 @@ export default async function AboutPage({ params }: IAboutPageProps) {
           </div>
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {[2, 3, 4, 5, 6, 7].map(index => (
-              <div
-                key={index}
-                className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-800/50 to-slate-900/50 p-1 backdrop-blur-sm transition-all duration-500 hover:-translate-y-2"
-              >
-                <div className="relative overflow-hidden rounded-xl">
+            {[1, 2, 3, 4, 5].map(index => (
+              <div key={index} className="group relative overflow-hidden">
+                <div className="relative overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 via-amber-400/5 to-amber-600/10 opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
                   <Image
-                    src={`/wood${index + 1}.jpg`}
-                    alt={`${locale === 'nb' ? 'Verkstedsbilde' : 'Workshop image'} ${index + 1}`}
+                    src={`/about/workshop${index}.jpg`}
+                    alt={`${locale === 'nb' ? 'Verkstedsbilde' : 'Workshop image'} ${index}`}
                     width={400}
                     height={320}
-                    className="h-80 w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="aspect-[3/4] w-full object-cover transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
                 </div>
               </div>
             ))}
+            {/* Workshop 6 with .png extension */}
+            <div key={6} className="group relative overflow-hidden">
+              <div className="relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 via-amber-400/5 to-amber-600/10 opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+                <Image
+                  src="/about/workshop6.png"
+                  alt={`${locale === 'nb' ? 'Verkstedsbilde' : 'Workshop image'} 6`}
+                  width={400}
+                  height={320}
+                  className="aspect-[3/4] w-full object-cover transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

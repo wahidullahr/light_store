@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { use } from 'react';
 
 interface Product {
   id: number;
@@ -16,11 +17,11 @@ interface Product {
 }
 
 interface IProductsPageProps {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }
 
 export default function ProductsPage({ params }: IProductsPageProps) {
-  const { locale } = params;
+  const { locale } = use(params);
 
   // All products including extended collection (wood1-wood12)
   const allProducts = [
@@ -30,7 +31,7 @@ export default function ProductsPage({ params }: IProductsPageProps) {
       name: locale === 'nb' ? 'Nordisk Eleganse' : 'Nordic Elegance',
       category: locale === 'nb' ? 'Taklampe' : 'Ceiling Lamp',
       price: locale === 'nb' ? 'Fra 2.890 kr' : 'From 2,890 NOK',
-      image: '/wood1.jpg',
+      image: '/products/lamp1/1.jpg',
       description:
         locale === 'nb'
           ? 'Håndlaget taklampe i ek med varm, diffus belysning'
@@ -39,7 +40,12 @@ export default function ProductsPage({ params }: IProductsPageProps) {
         locale === 'nb'
           ? ['Norsk eik', 'LED-integrert', 'Dimmbar', '2 års garanti']
           : ['Norwegian oak', 'LED integrated', 'Dimmable', '2-year warranty'],
-      detailImages: ['/wood1.jpg', '/wood1.jpg', '/wood1.jpg'],
+      detailImages: [
+        '/products/lamp1/1.jpg',
+        '/products/lamp1/2.jpg',
+        '/products/lamp1/3.jpg',
+        '/products/lamp1/4.jpg',
+      ],
       detailDescription:
         locale === 'nb'
           ? 'Denne eksklusive taklampen er håndlaget av erfarne norske håndverkere fra premium norsk eik. Hver lampe er unikt formet og behandlet med naturlige oljer for å fremheve trestrukturen. Den integrerte LED-teknologien gir perfekt lys for ethvert rom, mens den dimmbare funksjonen lar deg tilpasse stemningen.'
@@ -50,7 +56,7 @@ export default function ProductsPage({ params }: IProductsPageProps) {
       name: locale === 'nb' ? 'Fjord Mystikk' : 'Fjord Mystique',
       category: locale === 'nb' ? 'Bordlampe' : 'Table Lamp',
       price: locale === 'nb' ? 'Fra 1.690 kr' : 'From 1,690 NOK',
-      image: '/wood2.jpg',
+      image: '/products/lamp2/1.jpg',
       description:
         locale === 'nb'
           ? 'Skulpturell bordlampe inspirert av norske fjorder'
@@ -59,7 +65,12 @@ export default function ProductsPage({ params }: IProductsPageProps) {
         locale === 'nb'
           ? ['Bjørk tre', 'Håndformet', 'Naturlig olje', 'Unikt design']
           : ['Birch wood', 'Hand-shaped', 'Natural oil', 'Unique design'],
-      detailImages: ['/wood2.jpg', '/wood2.jpg', '/wood2.jpg'],
+      detailImages: [
+        '/products/lamp2/1.jpg',
+        '/products/lamp2/2.jpg',
+        '/products/lamp2/3.jpg',
+        '/products/lamp2/4.jpg',
+      ],
       detailDescription:
         locale === 'nb'
           ? 'Inspirert av de majestætiske norske fjordene, denne skulpturelle bordlampen er håndformet fra norsk bjørk. Den organiske formen gjenspeiler naturens egne kurver og former, mens det varme lyset skaper en intim atmosfære i ethvert rom.'
@@ -70,7 +81,7 @@ export default function ProductsPage({ params }: IProductsPageProps) {
       name: locale === 'nb' ? 'Aurora Borealis' : 'Northern Lights',
       category: locale === 'nb' ? 'Gulvlampe' : 'Floor Lamp',
       price: locale === 'nb' ? 'Fra 3.490 kr' : 'From 3,490 NOK',
-      image: '/wood3.jpg',
+      image: '/products/lamp3/1.jpg',
       description:
         locale === 'nb'
           ? 'Spektakulær gulvlampe som skaper magiske lyseffekter'
@@ -79,7 +90,12 @@ export default function ProductsPage({ params }: IProductsPageProps) {
         locale === 'nb'
           ? ['Furu tre', 'RGB LED', 'Smart kontroll', 'Atmosfærelys']
           : ['Pine wood', 'RGB LED', 'Smart control', 'Ambient light'],
-      detailImages: ['/wood3.jpg', '/wood3.jpg', '/wood3.jpg'],
+      detailImages: [
+        '/products/lamp3/1.jpg',
+        '/products/lamp3/2.jpg',
+        '/products/lamp3/3.jpg',
+        '/products/lamp3/4.jpg',
+      ],
       detailDescription:
         locale === 'nb'
           ? 'Denne spektakulære gulvlampen kombinerer tradisjonelt håndverk med moderne teknologi. Den RGB LED-teknologien lar deg skape nordlys-lignende effekter i ditt eget hjem, mens den smarte kontrollen gir deg full kontroll over farger og intensitet.'
@@ -90,7 +106,7 @@ export default function ProductsPage({ params }: IProductsPageProps) {
       name: locale === 'nb' ? 'Vintage Vikingskip' : 'Viking Vessel Vintage',
       category: locale === 'nb' ? 'Vegglampe' : 'Wall Lamp',
       price: locale === 'nb' ? 'Fra 2.190 kr' : 'From 2,190 NOK',
-      image: '/wood4.jpg',
+      image: '/products/lamp4/1.jpg',
       description:
         locale === 'nb'
           ? 'Historisk inspirert vegglampe med moderne funktionalitet'
@@ -99,7 +115,12 @@ export default function ProductsPage({ params }: IProductsPageProps) {
         locale === 'nb'
           ? ['Gammel furu', 'Antikk finish', 'Justerbar arm', 'Vintage LED']
           : ['Aged pine', 'Antique finish', 'Adjustable arm', 'Vintage LED'],
-      detailImages: ['/wood4.jpg', '/wood4.jpg', '/wood4.jpg'],
+      detailImages: [
+        '/products/lamp4/1.jpg',
+        '/products/lamp4/2.jpg',
+        '/products/lamp4/3.jpg',
+        '/products/lamp4/4.jpg',
+      ],
       detailDescription:
         locale === 'nb'
           ? 'En hyllest til vårt maritime arv, denne vegglampen kombinerer historisk design med moderne LED-teknologi. Den justerbare armen lar deg rette lyset akkurat dit du trenger det.'
@@ -110,7 +131,7 @@ export default function ProductsPage({ params }: IProductsPageProps) {
       name: locale === 'nb' ? 'Minimalistisk Midnight' : 'Minimalist Midnight',
       category: locale === 'nb' ? 'Pendant' : 'Pendant',
       price: locale === 'nb' ? 'Fra 2.290 kr' : 'From 2,290 NOK',
-      image: '/wood5.jpg',
+      image: '/products/lamp1/2.jpg',
       description:
         locale === 'nb'
           ? 'Ren, moderne pendant med skandinavisk design'
@@ -119,14 +140,19 @@ export default function ProductsPage({ params }: IProductsPageProps) {
         locale === 'nb'
           ? ['Valnøtt tre', 'Minimal design', 'Energieffektiv', 'Tidsløs stil']
           : ['Walnut wood', 'Minimal design', 'Energy efficient', 'Timeless style'],
-      detailImages: ['/wood5.jpg', '/wood5.jpg', '/wood5.jpg'],
+      detailImages: [
+        '/products/lamp1/2.jpg',
+        '/products/lamp1/1.jpg',
+        '/products/lamp1/3.jpg',
+        '/products/lamp1/4.jpg',
+      ],
     },
     {
       id: 6,
       name: locale === 'nb' ? 'Arktisk Glød' : 'Arctic Glow',
       category: locale === 'nb' ? 'Dekorlampe' : 'Decorative Lamp',
       price: locale === 'nb' ? 'Fra 1.890 kr' : 'From 1,890 NOK',
-      image: '/wood6.jpg',
+      image: '/products/lamp2/2.jpg',
       description:
         locale === 'nb'
           ? 'Kunstnerisk lampe som skaper stemningsfulle skygger'
@@ -135,7 +161,12 @@ export default function ProductsPage({ params }: IProductsPageProps) {
         locale === 'nb'
           ? ['Bambus', 'Perforert design', 'Varmt lys', 'Håndskåret']
           : ['Bamboo', 'Perforated design', 'Warm light', 'Hand-carved'],
-      detailImages: ['/wood6.jpg', '/wood6.jpg', '/wood6.jpg'],
+      detailImages: [
+        '/products/lamp2/2.jpg',
+        '/products/lamp2/1.jpg',
+        '/products/lamp2/3.jpg',
+        '/products/lamp2/4.jpg',
+      ],
     },
     // Extended collection (wood7-wood12)
     {
@@ -143,7 +174,7 @@ export default function ProductsPage({ params }: IProductsPageProps) {
       name: locale === 'nb' ? 'Skandi Harmoni' : 'Scandinavian Harmony',
       category: locale === 'nb' ? 'Taklampe' : 'Ceiling Lamp',
       price: locale === 'nb' ? 'Fra 3.190 kr' : 'From 3,190 NOK',
-      image: '/wood7.jpg',
+      image: '/products/lamp3/2.jpg',
       description:
         locale === 'nb'
           ? 'Elegant taklampe med perfekt balanse mellom form og funksjon'
@@ -152,14 +183,19 @@ export default function ProductsPage({ params }: IProductsPageProps) {
         locale === 'nb'
           ? ['Ask tre', 'Dimmerkompatibel', 'Nordisk design', 'Miljøvennlig']
           : ['Ash wood', 'Dimmer compatible', 'Nordic design', 'Eco-friendly'],
-      detailImages: ['/wood7.jpg', '/wood7.jpg', '/wood7.jpg'],
+      detailImages: [
+        '/products/lamp3/2.jpg',
+        '/products/lamp3/1.jpg',
+        '/products/lamp3/3.jpg',
+        '/products/lamp3/4.jpg',
+      ],
     },
     {
       id: 8,
       name: locale === 'nb' ? 'Fjell Silhuett' : 'Mountain Silhouette',
       category: locale === 'nb' ? 'Bordlampe' : 'Table Lamp',
       price: locale === 'nb' ? 'Fra 2.490 kr' : 'From 2,490 NOK',
-      image: '/wood8.jpg',
+      image: '/products/lamp4/2.jpg',
       description:
         locale === 'nb'
           ? 'Inspirert av norske fjellformasjoner, håndskåret i heltre'
@@ -168,14 +204,19 @@ export default function ProductsPage({ params }: IProductsPageProps) {
         locale === 'nb'
           ? ['Eik tre', 'Håndskåret', 'Unikt mønster', 'Varm belysning']
           : ['Oak wood', 'Hand-carved', 'Unique pattern', 'Warm lighting'],
-      detailImages: ['/wood8.jpg', '/wood8.jpg', '/wood8.jpg'],
+      detailImages: [
+        '/products/lamp4/2.jpg',
+        '/products/lamp4/1.jpg',
+        '/products/lamp4/3.jpg',
+        '/products/lamp4/4.jpg',
+      ],
     },
     {
       id: 9,
       name: locale === 'nb' ? 'Norröna Kraft' : 'Northern Strength',
       category: locale === 'nb' ? 'Gulvlampe' : 'Floor Lamp',
       price: locale === 'nb' ? 'Fra 4.290 kr' : 'From 4,290 NOK',
-      image: '/wood9.jpg',
+      image: '/products/lamp1/3.jpg',
       description:
         locale === 'nb'
           ? 'Kraftfull gulvlampe som kombinerer rustikk sjarm med moderne teknologi'
@@ -184,14 +225,19 @@ export default function ProductsPage({ params }: IProductsPageProps) {
         locale === 'nb'
           ? ['Furu stamme', 'Smart LED', 'Fjernkontroll', 'Robust design']
           : ['Pine trunk', 'Smart LED', 'Remote control', 'Robust design'],
-      detailImages: ['/wood9.jpg', '/wood9.jpg', '/wood9.jpg'],
+      detailImages: [
+        '/products/lamp1/3.jpg',
+        '/products/lamp1/1.jpg',
+        '/products/lamp1/2.jpg',
+        '/products/lamp1/4.jpg',
+      ],
     },
     {
       id: 10,
       name: locale === 'nb' ? 'Coastal Breeze' : 'Coastal Breeze',
       category: locale === 'nb' ? 'Vegglampe' : 'Wall Lamp',
       price: locale === 'nb' ? 'Fra 1.990 kr' : 'From 1,990 NOK',
-      image: '/wood10.jpg',
+      image: '/products/lamp2/3.jpg',
       description:
         locale === 'nb'
           ? 'Luftig vegglampe som fanger essensen av norsk kystlinje'
@@ -200,14 +246,19 @@ export default function ProductsPage({ params }: IProductsPageProps) {
         locale === 'nb'
           ? ['Driftved', 'Naturlig form', 'Saltvann behandlet', 'Unik tekstur']
           : ['Driftwood', 'Natural form', 'Saltwater treated', 'Unique texture'],
-      detailImages: ['/wood10.jpg', '/wood10.jpg', '/wood10.jpg'],
+      detailImages: [
+        '/products/lamp2/3.jpg',
+        '/products/lamp2/1.jpg',
+        '/products/lamp2/2.jpg',
+        '/products/lamp2/4.jpg',
+      ],
     },
     {
       id: 11,
       name: locale === 'nb' ? 'Boreal Eleganse' : 'Boreal Elegance',
       category: locale === 'nb' ? 'Pendant' : 'Pendant',
       price: locale === 'nb' ? 'Fra 2.790 kr' : 'From 2,790 NOK',
-      image: '/wood11.jpg',
+      image: '/products/lamp3/3.jpg',
       description:
         locale === 'nb'
           ? 'Sofistikert pendant inspirert av nordlige skoger'
@@ -216,14 +267,19 @@ export default function ProductsPage({ params }: IProductsPageProps) {
         locale === 'nb'
           ? ['Gran tre', 'Naturlig harpiks', 'Organisk form', 'Dempet lys']
           : ['Spruce wood', 'Natural resin', 'Organic form', 'Diffused light'],
-      detailImages: ['/wood11.jpg', '/wood11.jpg', '/wood11.jpg'],
+      detailImages: [
+        '/products/lamp3/3.jpg',
+        '/products/lamp3/1.jpg',
+        '/products/lamp3/2.jpg',
+        '/products/lamp3/4.jpg',
+      ],
     },
     {
       id: 12,
       name: locale === 'nb' ? 'Midnight Sun' : 'Midnight Sun',
       category: locale === 'nb' ? 'Dekorlampe' : 'Decorative Lamp',
       price: locale === 'nb' ? 'Fra 3.590 kr' : 'From 3,590 NOK',
-      image: '/wood12.jpg',
+      image: '/products/lamp4/3.jpg',
       description:
         locale === 'nb'
           ? 'Spektakulær dekorlampe som simulerer midnattssolen'
@@ -232,7 +288,12 @@ export default function ProductsPage({ params }: IProductsPageProps) {
         locale === 'nb'
           ? ['Bjørk burl', 'RGB spektrum', 'App kontroll', 'Kunstnerisk']
           : ['Birch burl', 'RGB spectrum', 'App control', 'Artistic'],
-      detailImages: ['/wood12.jpg', '/wood12.jpg', '/wood12.jpg'],
+      detailImages: [
+        '/products/lamp4/3.jpg',
+        '/products/lamp4/1.jpg',
+        '/products/lamp4/2.jpg',
+        '/products/lamp4/4.jpg',
+      ],
     },
   ];
 
@@ -371,7 +432,7 @@ function ProductsContent({ locale, allProducts }: { locale: string; allProducts:
                       {/* Rotating Images - Multiple high-quality wood images */}
                       <div className="carousel-slide relative">
                         <Image
-                          src="/wood1.jpg"
+                          src="/products/lamp1/1.jpg"
                           alt="Nordic Elegance Ceiling Lamp"
                           width={800}
                           height={600}
@@ -379,40 +440,40 @@ function ProductsContent({ locale, allProducts }: { locale: string; allProducts:
                           style={{ animationDelay: '0s' }}
                         />
                         <Image
-                          src="/wood3.jpg"
-                          alt="Aurora Borealis Floor Lamp"
+                          src="/products/lamp2/1.jpg"
+                          alt="Fjord Mystique Table Lamp"
                           width={800}
                           height={600}
                           className="animate-carousel absolute inset-0 h-[600px] w-full object-cover opacity-0 transition-all duration-1000"
                           style={{ animationDelay: '2s' }}
                         />
                         <Image
-                          src="/wood5.jpg"
-                          alt="Minimalist Midnight Pendant"
+                          src="/products/lamp3/1.jpg"
+                          alt="Northern Lights Floor Lamp"
                           width={800}
                           height={600}
                           className="animate-carousel absolute inset-0 h-[600px] w-full object-cover opacity-0 transition-all duration-1000"
                           style={{ animationDelay: '4s' }}
                         />
                         <Image
-                          src="/wood7.jpg"
-                          alt="Scandinavian Harmony Ceiling"
+                          src="/products/lamp4/1.jpg"
+                          alt="Viking Vessel Wall Lamp"
                           width={800}
                           height={600}
                           className="animate-carousel absolute inset-0 h-[600px] w-full object-cover opacity-0 transition-all duration-1000"
                           style={{ animationDelay: '6s' }}
                         />
                         <Image
-                          src="/wood9.jpg"
-                          alt="Northern Strength Floor Lamp"
+                          src="/products/lamp1/2.jpg"
+                          alt="Minimalist Midnight Pendant"
                           width={800}
                           height={600}
                           className="animate-carousel absolute inset-0 h-[600px] w-full object-cover opacity-0 transition-all duration-1000"
                           style={{ animationDelay: '8s' }}
                         />
                         <Image
-                          src="/wood11.jpg"
-                          alt="Boreal Elegance Pendant"
+                          src="/products/lamp2/2.jpg"
+                          alt="Arctic Glow Decorative Lamp"
                           width={800}
                           height={600}
                           className="animate-carousel absolute inset-0 h-[600px] w-full object-cover opacity-0 transition-all duration-1000"
@@ -701,6 +762,7 @@ function ProductsContent({ locale, allProducts }: { locale: string; allProducts:
                           e.stopPropagation();
                           setCurrentImageIndex(index);
                         }}
+                        aria-label={`${selectedProduct.name} thumbnail ${index + 1}`}
                         className={`relative overflow-hidden rounded-lg transition-all duration-300 ${
                           index === currentImageIndex
                             ? 'scale-105 ring-2 ring-amber-400'
