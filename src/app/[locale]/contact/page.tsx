@@ -1,13 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 interface IContactPageProps {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }
 
 export default function ContactPage({ params }: IContactPageProps) {
-  const { locale } = params;
+  const [locale, setLocale] = useState<string>('en');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -17,6 +17,13 @@ export default function ContactPage({ params }: IContactPageProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState('');
+
+  // Handle params asynchronously
+  React.useEffect(() => {
+    params.then(({ locale: resolvedLocale }) => {
+      setLocale(resolvedLocale);
+    });
+  }, [params]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -154,7 +161,7 @@ export default function ContactPage({ params }: IContactPageProps) {
             </div>
 
             <h1 className="font-fraunces mb-4 text-3xl leading-[1.1] font-light tracking-tight text-slate-50 md:text-4xl lg:text-5xl xl:text-6xl">
-              {locale === 'nb' ? 'La oss skape noe sammen' : 'Let&#39;s create something together'}
+              {locale === 'nb' ? 'La oss skape noe sammen' : "Let's create something together"}
             </h1>
 
             <p className="mx-auto max-w-3xl text-lg leading-relaxed font-light tracking-wide text-slate-400 lg:text-xl">

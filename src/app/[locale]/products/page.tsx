@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { use } from 'react';
 
 interface Product {
@@ -25,7 +26,7 @@ export default function ProductsPage({ params }: IProductsPageProps) {
 
   // All products including extended collection (wood1-wood12)
   const allProducts = [
-    // Original products (wood1-wood6)
+    // Original products (lamp1-lamp6)
     {
       id: 1,
       name: locale === 'nb' ? 'Nordisk Eleganse' : 'Nordic Elegance',
@@ -128,10 +129,10 @@ export default function ProductsPage({ params }: IProductsPageProps) {
     },
     {
       id: 5,
-      name: locale === 'nb' ? 'Minimalistisk Midnight' : 'Minimalist Midnight',
+      name: locale === 'nb' ? 'Skandinavisk Stil' : 'Scandinavian Style',
       category: locale === 'nb' ? 'Pendant' : 'Pendant',
       price: locale === 'nb' ? 'Fra 2.290 kr' : 'From 2,290 NOK',
-      image: '/products/lamp1/2.jpg',
+      image: '/products/lamp5/1.jpg',
       description:
         locale === 'nb'
           ? 'Ren, moderne pendant med skandinavisk design'
@@ -141,18 +142,22 @@ export default function ProductsPage({ params }: IProductsPageProps) {
           ? ['Valnøtt tre', 'Minimal design', 'Energieffektiv', 'Tidsløs stil']
           : ['Walnut wood', 'Minimal design', 'Energy efficient', 'Timeless style'],
       detailImages: [
-        '/products/lamp1/2.jpg',
-        '/products/lamp1/1.jpg',
-        '/products/lamp1/3.jpg',
-        '/products/lamp1/4.jpg',
+        '/products/lamp5/1.jpg',
+        '/products/lamp5/2.jpg',
+        '/products/lamp5/3.jpg',
+        '/products/lamp5/4.jpg',
       ],
+      detailDescription:
+        locale === 'nb'
+          ? 'En ren og moderne pendantlampe som kombinerer skandinavisk design med funksjonalitet. Perfekt for å skape et minimalistisk og elegant interiør.'
+          : 'A clean and modern pendant lamp that combines Scandinavian design with functionality. Perfect for creating a minimalist and elegant interior.',
     },
     {
       id: 6,
       name: locale === 'nb' ? 'Arktisk Glød' : 'Arctic Glow',
       category: locale === 'nb' ? 'Dekorlampe' : 'Decorative Lamp',
       price: locale === 'nb' ? 'Fra 1.890 kr' : 'From 1,890 NOK',
-      image: '/products/lamp2/2.jpg',
+      image: '/products/lamp6/1.jpg',
       description:
         locale === 'nb'
           ? 'Kunstnerisk lampe som skaper stemningsfulle skygger'
@@ -162,138 +167,15 @@ export default function ProductsPage({ params }: IProductsPageProps) {
           ? ['Bambus', 'Perforert design', 'Varmt lys', 'Håndskåret']
           : ['Bamboo', 'Perforated design', 'Warm light', 'Hand-carved'],
       detailImages: [
-        '/products/lamp2/2.jpg',
-        '/products/lamp2/1.jpg',
-        '/products/lamp2/3.jpg',
-        '/products/lamp2/4.jpg',
+        '/products/lamp6/1.jpg',
+        '/products/lamp6/2.jpg',
+        '/products/lamp6/3.jpg',
+        '/products/lamp6/4.jpg',
       ],
-    },
-    // Extended collection (wood7-wood12)
-    {
-      id: 7,
-      name: locale === 'nb' ? 'Skandi Harmoni' : 'Scandinavian Harmony',
-      category: locale === 'nb' ? 'Taklampe' : 'Ceiling Lamp',
-      price: locale === 'nb' ? 'Fra 3.190 kr' : 'From 3,190 NOK',
-      image: '/products/lamp3/2.jpg',
-      description:
+      detailDescription:
         locale === 'nb'
-          ? 'Elegant taklampe med perfekt balanse mellom form og funksjon'
-          : 'Elegant ceiling lamp with perfect balance between form and function',
-      features:
-        locale === 'nb'
-          ? ['Ask tre', 'Dimmerkompatibel', 'Nordisk design', 'Miljøvennlig']
-          : ['Ash wood', 'Dimmer compatible', 'Nordic design', 'Eco-friendly'],
-      detailImages: [
-        '/products/lamp3/2.jpg',
-        '/products/lamp3/1.jpg',
-        '/products/lamp3/3.jpg',
-        '/products/lamp3/4.jpg',
-      ],
-    },
-    {
-      id: 8,
-      name: locale === 'nb' ? 'Fjell Silhuett' : 'Mountain Silhouette',
-      category: locale === 'nb' ? 'Bordlampe' : 'Table Lamp',
-      price: locale === 'nb' ? 'Fra 2.490 kr' : 'From 2,490 NOK',
-      image: '/products/lamp4/2.jpg',
-      description:
-        locale === 'nb'
-          ? 'Inspirert av norske fjellformasjoner, håndskåret i heltre'
-          : 'Inspired by Norwegian mountain formations, hand-carved from solid wood',
-      features:
-        locale === 'nb'
-          ? ['Eik tre', 'Håndskåret', 'Unikt mønster', 'Varm belysning']
-          : ['Oak wood', 'Hand-carved', 'Unique pattern', 'Warm lighting'],
-      detailImages: [
-        '/products/lamp4/2.jpg',
-        '/products/lamp4/1.jpg',
-        '/products/lamp4/3.jpg',
-        '/products/lamp4/4.jpg',
-      ],
-    },
-    {
-      id: 9,
-      name: locale === 'nb' ? 'Norröna Kraft' : 'Northern Strength',
-      category: locale === 'nb' ? 'Gulvlampe' : 'Floor Lamp',
-      price: locale === 'nb' ? 'Fra 4.290 kr' : 'From 4,290 NOK',
-      image: '/products/lamp1/3.jpg',
-      description:
-        locale === 'nb'
-          ? 'Kraftfull gulvlampe som kombinerer rustikk sjarm med moderne teknologi'
-          : 'Powerful floor lamp combining rustic charm with modern technology',
-      features:
-        locale === 'nb'
-          ? ['Furu stamme', 'Smart LED', 'Fjernkontroll', 'Robust design']
-          : ['Pine trunk', 'Smart LED', 'Remote control', 'Robust design'],
-      detailImages: [
-        '/products/lamp1/3.jpg',
-        '/products/lamp1/1.jpg',
-        '/products/lamp1/2.jpg',
-        '/products/lamp1/4.jpg',
-      ],
-    },
-    {
-      id: 10,
-      name: locale === 'nb' ? 'Coastal Breeze' : 'Coastal Breeze',
-      category: locale === 'nb' ? 'Vegglampe' : 'Wall Lamp',
-      price: locale === 'nb' ? 'Fra 1.990 kr' : 'From 1,990 NOK',
-      image: '/products/lamp2/3.jpg',
-      description:
-        locale === 'nb'
-          ? 'Luftig vegglampe som fanger essensen av norsk kystlinje'
-          : 'Airy wall lamp capturing the essence of Norwegian coastline',
-      features:
-        locale === 'nb'
-          ? ['Driftved', 'Naturlig form', 'Saltvann behandlet', 'Unik tekstur']
-          : ['Driftwood', 'Natural form', 'Saltwater treated', 'Unique texture'],
-      detailImages: [
-        '/products/lamp2/3.jpg',
-        '/products/lamp2/1.jpg',
-        '/products/lamp2/2.jpg',
-        '/products/lamp2/4.jpg',
-      ],
-    },
-    {
-      id: 11,
-      name: locale === 'nb' ? 'Boreal Eleganse' : 'Boreal Elegance',
-      category: locale === 'nb' ? 'Pendant' : 'Pendant',
-      price: locale === 'nb' ? 'Fra 2.790 kr' : 'From 2,790 NOK',
-      image: '/products/lamp3/3.jpg',
-      description:
-        locale === 'nb'
-          ? 'Sofistikert pendant inspirert av nordlige skoger'
-          : 'Sophisticated pendant inspired by northern forests',
-      features:
-        locale === 'nb'
-          ? ['Gran tre', 'Naturlig harpiks', 'Organisk form', 'Dempet lys']
-          : ['Spruce wood', 'Natural resin', 'Organic form', 'Diffused light'],
-      detailImages: [
-        '/products/lamp3/3.jpg',
-        '/products/lamp3/1.jpg',
-        '/products/lamp3/2.jpg',
-        '/products/lamp3/4.jpg',
-      ],
-    },
-    {
-      id: 12,
-      name: locale === 'nb' ? 'Midnight Sun' : 'Midnight Sun',
-      category: locale === 'nb' ? 'Dekorlampe' : 'Decorative Lamp',
-      price: locale === 'nb' ? 'Fra 3.590 kr' : 'From 3,590 NOK',
-      image: '/products/lamp4/3.jpg',
-      description:
-        locale === 'nb'
-          ? 'Spektakulær dekorlampe som simulerer midnattssolen'
-          : 'Spectacular decorative lamp simulating the midnight sun',
-      features:
-        locale === 'nb'
-          ? ['Bjørk burl', 'RGB spektrum', 'App kontroll', 'Kunstnerisk']
-          : ['Birch burl', 'RGB spectrum', 'App control', 'Artistic'],
-      detailImages: [
-        '/products/lamp4/3.jpg',
-        '/products/lamp4/1.jpg',
-        '/products/lamp4/2.jpg',
-        '/products/lamp4/4.jpg',
-      ],
+          ? 'En kunstnerisk lampe som skaper vakre skygger og stemningsfull belysning. Håndskåret fra naturlig bambus for en unik og bærekraftig løsning.'
+          : 'An artistic lamp that creates beautiful shadows and atmospheric lighting. Hand-carved from natural bamboo for a unique and sustainable solution.',
     },
   ];
 
@@ -302,10 +184,10 @@ export default function ProductsPage({ params }: IProductsPageProps) {
 
 // Client component for interactive functionality
 function ProductsContent({ locale, allProducts }: { locale: string; allProducts: Product[] }) {
-  const [showAllProducts, setShowAllProducts] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [carouselIndex, setCarouselIndex] = useState(0);
 
   // Handle product card click
   const handleProductClick = (product: Product) => {
@@ -338,10 +220,26 @@ function ProductsContent({ locale, allProducts }: { locale: string; allProducts:
     }
   };
 
-  // Initial products to show (first 6)
-  const initialProducts = allProducts.slice(0, 6);
-  const additionalProducts = allProducts.slice(6);
-  const displayProducts = showAllProducts ? allProducts : initialProducts;
+  // Carousel images for hero section
+  const carouselImages = [
+    '/products/lamp1/1.jpg',
+    '/products/lamp2/1.jpg',
+    '/products/lamp3/1.jpg',
+    '/products/lamp4/1.jpg',
+    '/products/lamp5/1.jpg',
+    '/products/lamp6/1.jpg',
+  ];
+
+  // Rotate carousel images every 4 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCarouselIndex(prev => (prev + 1) % carouselImages.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [carouselImages.length]);
+
+  // Display all products (6 products) without show more/less functionality
+  const displayProducts = allProducts.slice(0, 6);
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
@@ -422,77 +320,42 @@ function ProductsContent({ locale, allProducts }: { locale: string; allProducts:
             <div className="relative">
               <div className="group relative">
                 {/* Main Image Container */}
-                <div className="relative mx-auto max-w-lg xl:max-w-xl">
+                <div className="relative mx-auto w-full max-w-none">
                   {/* Glow Effect */}
-                  <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-amber-500/20 via-amber-400/30 to-amber-600/20 opacity-60 blur-2xl transition-opacity duration-700 group-hover:opacity-80"></div>
+                  <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-amber-500/25 via-amber-400/35 to-amber-600/25 opacity-70 blur-2xl transition-opacity duration-700 group-hover:opacity-90"></div>
 
                   {/* Image Carousel Container */}
-                  <div className="carousel relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-800/50 to-slate-900/50 p-1 backdrop-blur-sm">
-                    <div className="carousel-inner overflow-hidden rounded-[1.3rem] bg-gradient-to-br from-slate-700/30 to-slate-800/30">
-                      {/* Rotating Images - Multiple high-quality wood images */}
-                      <div className="carousel-slide relative">
-                        <Image
-                          src="/products/lamp1/1.jpg"
-                          alt="Nordic Elegance Ceiling Lamp"
-                          width={800}
-                          height={600}
-                          className="animate-carousel h-[600px] w-full object-cover transition-all duration-1000"
-                          style={{ animationDelay: '0s' }}
-                        />
-                        <Image
-                          src="/products/lamp2/1.jpg"
-                          alt="Fjord Mystique Table Lamp"
-                          width={800}
-                          height={600}
-                          className="animate-carousel absolute inset-0 h-[600px] w-full object-cover opacity-0 transition-all duration-1000"
-                          style={{ animationDelay: '2s' }}
-                        />
-                        <Image
-                          src="/products/lamp3/1.jpg"
-                          alt="Northern Lights Floor Lamp"
-                          width={800}
-                          height={600}
-                          className="animate-carousel absolute inset-0 h-[600px] w-full object-cover opacity-0 transition-all duration-1000"
-                          style={{ animationDelay: '4s' }}
-                        />
-                        <Image
-                          src="/products/lamp4/1.jpg"
-                          alt="Viking Vessel Wall Lamp"
-                          width={800}
-                          height={600}
-                          className="animate-carousel absolute inset-0 h-[600px] w-full object-cover opacity-0 transition-all duration-1000"
-                          style={{ animationDelay: '6s' }}
-                        />
-                        <Image
-                          src="/products/lamp1/2.jpg"
-                          alt="Minimalist Midnight Pendant"
-                          width={800}
-                          height={600}
-                          className="animate-carousel absolute inset-0 h-[600px] w-full object-cover opacity-0 transition-all duration-1000"
-                          style={{ animationDelay: '8s' }}
-                        />
-                        <Image
-                          src="/products/lamp2/2.jpg"
-                          alt="Arctic Glow Decorative Lamp"
-                          width={800}
-                          height={600}
-                          className="animate-carousel absolute inset-0 h-[600px] w-full object-cover opacity-0 transition-all duration-1000"
-                          style={{ animationDelay: '10s' }}
-                        />
-                      </div>
+                  <div className="carousel relative h-[700px] overflow-hidden rounded-3xl bg-gradient-to-br from-slate-800/40 to-slate-900/40 p-0 backdrop-blur-sm">
+                    {/* Rotating Images - Multiple high-quality wood images */}
+                    <div className="carousel-slide relative h-full w-full overflow-hidden rounded-2xl">
+                      {carouselImages.map((image, index) => (
+                        <div
+                          key={index}
+                          className={`absolute inset-0 h-full w-full rounded-2xl transition-opacity duration-1000 ${
+                            index === carouselIndex ? 'opacity-100' : 'opacity-0'
+                          }`}
+                        >
+                          <Image
+                            src={image}
+                            alt={`Carousel image ${index + 1}`}
+                            fill
+                            className="h-full w-full rounded-2xl object-contain"
+                          />
+                        </div>
+                      ))}
                     </div>
                   </div>
 
                   {/* Carousel Indicators */}
                   <div className="absolute -bottom-8 left-1/2 flex -translate-x-1/2 transform space-x-2">
-                    {[1, 2, 3, 4, 5, 6].map((_, index) => (
+                    {carouselImages.map((_, index) => (
                       <div
                         key={index}
-                        className="h-2 w-2 rounded-full bg-amber-400/40 transition-all duration-300 hover:bg-amber-400/80"
-                        style={{
-                          animation: `pulse 2s ease-in-out infinite`,
-                          animationDelay: `${index * 2}s`,
-                        }}
+                        className={`h-2 w-2 rounded-full transition-all duration-300 ${
+                          index === carouselIndex
+                            ? 'scale-125 bg-amber-400'
+                            : 'bg-amber-400/40 hover:bg-amber-400/80'
+                        }`}
                       ></div>
                     ))}
                   </div>
@@ -540,28 +403,22 @@ function ProductsContent({ locale, allProducts }: { locale: string; allProducts:
               <div
                 key={product.id}
                 onClick={() => handleProductClick(product)}
-                className="group relative cursor-pointer overflow-hidden rounded-2xl border border-slate-800/50 bg-gradient-to-br from-slate-800/20 to-slate-900/40 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-amber-500/30 hover:shadow-2xl hover:shadow-amber-500/10"
+                className="group relative cursor-pointer overflow-hidden"
               >
                 {/* Product Image with consistent aspect ratio */}
-                <div className="relative aspect-[4/3] overflow-hidden">
+                <div className="relative aspect-[3/4] overflow-hidden">
                   <Image
                     src={product.image}
                     alt={product.name}
                     width={400}
-                    height={300}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    height={500}
+                    className="h-full w-full object-contain"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-60"></div>
-
-                  {/* Category Badge */}
-                  <div className="absolute top-3 left-3 rounded-full bg-amber-500/90 px-3 py-1 text-xs font-medium text-slate-950 backdrop-blur-sm">
-                    {product.category}
-                  </div>
                 </div>
 
                 {/* Product Info - Optimized for 3-column layout */}
-                <div className="p-6">
+                <div className="">
                   <h3 className="mb-3 line-clamp-1 text-xl font-light text-slate-100 transition-colors duration-300 group-hover:text-white">
                     {product.name}
                   </h3>
@@ -604,36 +461,7 @@ function ProductsContent({ locale, allProducts }: { locale: string; allProducts:
             ))}
           </div>
 
-          {/* Show More / Show Less Button */}
-          <div className="mt-12 text-center">
-            {!showAllProducts ? (
-              <button
-                onClick={() => setShowAllProducts(true)}
-                className="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 px-8 py-4 font-medium text-slate-950 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-amber-500/20"
-              >
-                <span className="relative flex items-center gap-2 font-semibold tracking-wide">
-                  {locale === 'nb' ? 'Se alle produkter' : 'View all products'}
-                  <span className="text-sm opacity-75">
-                    ({additionalProducts.length} {locale === 'nb' ? 'flere' : 'more'})
-                  </span>
-                </span>
-              </button>
-            ) : (
-              <div className="space-y-4">
-                <p className="text-sm text-slate-400">
-                  {locale === 'nb'
-                    ? `Viser alle ${allProducts.length} produkter i vår kolleksjon`
-                    : `Showing all ${allProducts.length} products in our collection`}
-                </p>
-                <button
-                  onClick={() => setShowAllProducts(false)}
-                  className="rounded-2xl border border-slate-700/50 bg-slate-800/30 px-8 py-4 font-medium text-slate-200 backdrop-blur-xl transition-all duration-500 hover:border-amber-500/50 hover:bg-slate-700/40"
-                >
-                  {locale === 'nb' ? 'Vis færre produkter' : 'Show fewer products'}
-                </button>
-              </div>
-            )}
-          </div>
+          {/* Remove Show More / Show Less Button since we only show 6 products */}
         </div>
       </section>
 
@@ -675,9 +503,9 @@ function ProductsContent({ locale, allProducts }: { locale: string; allProducts:
               {/* Left Side - Large Image with Navigation */}
               <div className="space-y-6 lg:col-span-8">
                 {/* Main Large Image with Navigation */}
-                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-700/30 to-slate-800/30 p-1">
+                <div className="relative overflow-hidden">
                   <div
-                    className="relative overflow-hidden rounded-xl"
+                    className="relative overflow-hidden"
                     style={{ height: '700px', width: '100%' }}
                   >
                     <Image
@@ -686,7 +514,7 @@ function ProductsContent({ locale, allProducts }: { locale: string; allProducts:
                       }
                       alt={`${selectedProduct.name} - Image ${currentImageIndex + 1}`}
                       fill
-                      className="h-full w-full object-cover transition-all duration-500"
+                      className="h-full w-full object-contain"
                     />
 
                     {/* Navigation Arrows */}
@@ -756,27 +584,18 @@ function ProductsContent({ locale, allProducts }: { locale: string; allProducts:
                 {selectedProduct.detailImages && selectedProduct.detailImages.length > 1 && (
                   <div className="flex justify-center gap-3">
                     {selectedProduct.detailImages.map((image, index) => (
-                      <button
+                      <div
                         key={index}
-                        onClick={e => {
-                          e.stopPropagation();
-                          setCurrentImageIndex(index);
-                        }}
-                        aria-label={`${selectedProduct.name} thumbnail ${index + 1}`}
-                        className={`relative overflow-hidden rounded-lg transition-all duration-300 ${
-                          index === currentImageIndex
-                            ? 'scale-105 ring-2 ring-amber-400'
-                            : 'opacity-70 hover:scale-105 hover:opacity-100'
-                        }`}
+                        className="relative overflow-hidden rounded-lg transition-all duration-300"
                         style={{ width: '80px', height: '60px' }}
                       >
                         <Image
                           src={image}
                           alt={`${selectedProduct.name} thumbnail ${index + 1}`}
                           fill
-                          className="h-full w-full object-cover"
+                          className="h-full w-full object-contain"
                         />
-                      </button>
+                      </div>
                     ))}
                   </div>
                 )}
@@ -824,7 +643,10 @@ function ProductsContent({ locale, allProducts }: { locale: string; allProducts:
 
                 {/* Contact CTA */}
                 <div className="space-y-4 pt-4">
-                  <button className="w-full rounded-xl bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 px-6 py-4 font-medium text-slate-950 transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-amber-500/25">
+                  <Link
+                    href={`/${locale}/contact`}
+                    className="block w-full rounded-xl bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 px-6 py-4 font-medium text-slate-950 transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-amber-500/25"
+                  >
                     <span className="flex items-center justify-center gap-2">
                       <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
@@ -834,7 +656,7 @@ function ProductsContent({ locale, allProducts }: { locale: string; allProducts:
                         ? 'Kontakt for tilpasset design'
                         : 'Contact for Custom Design'}
                     </span>
-                  </button>
+                  </Link>
                   <p className="text-center text-sm text-slate-400">
                     {locale === 'nb'
                       ? 'Alle lamper kan tilpasses dine spesifikke behov og ønsker'

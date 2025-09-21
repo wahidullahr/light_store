@@ -1,5 +1,6 @@
 import { useTranslations } from 'next-intl'; // eslint-disable-line @typescript-eslint/no-unused-vars
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface IPageProps {
   params: Promise<{ locale: string }>;
@@ -101,19 +102,25 @@ export default async function HomePage({ params }: IPageProps) {
 
               {/* Premium CTA Buttons */}
               <div className="flex flex-col gap-4 pt-4 sm:flex-row">
-                <button className="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 px-10 py-5 font-medium text-slate-950 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-amber-500/20 focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 focus:ring-offset-slate-950 focus:outline-none">
+                <Link
+                  href={`/${locale}/contact`}
+                  className="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 px-10 py-5 font-medium text-slate-950 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-amber-500/20 focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 focus:ring-offset-slate-950 focus:outline-none"
+                >
                   <div className="absolute inset-0 bg-gradient-to-r from-amber-300 to-amber-400 opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
                   <span className="relative font-semibold tracking-wide">
                     {locale === 'nb' ? 'Kontakt meg for pris' : 'Contact me for pricing'}
                   </span>
                   <div className="absolute inset-0 -translate-x-full rounded-2xl bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full"></div>
-                </button>
+                </Link>
 
-                <button className="group rounded-2xl border border-slate-700/50 bg-slate-800/30 px-10 py-5 font-medium text-slate-200 backdrop-blur-xl transition-all duration-500 hover:border-amber-500/50 hover:bg-slate-700/40 hover:text-white focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-950 focus:outline-none">
+                <Link
+                  href={`/${locale}/products`}
+                  className="group rounded-2xl border border-slate-700/50 bg-slate-800/30 px-10 py-5 font-medium text-slate-200 backdrop-blur-xl transition-all duration-500 hover:border-amber-500/50 hover:bg-slate-700/40 hover:text-white focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-950 focus:outline-none"
+                >
                   <span className="tracking-wide transition-colors duration-300">
                     {locale === 'nb' ? 'Se kolleksjonen' : 'View collection'}
                   </span>
-                </button>
+                </Link>
               </div>
 
               {/* Elegant Contact Info */}
@@ -520,30 +527,6 @@ export default async function HomePage({ params }: IPageProps) {
                   </div>
                 </div>
               ))}
-            </div>
-
-            <div className="text-center">
-              <div className="mb-12 flex flex-col gap-6 sm:flex-row sm:justify-center">
-                <button className="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 px-12 py-6 font-medium text-slate-950 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-amber-500/20 focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 focus:ring-offset-slate-950 focus:outline-none">
-                  <div className="absolute inset-0 bg-gradient-to-r from-amber-300 to-amber-400 opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
-                  <span className="relative text-lg font-semibold tracking-wide">
-                    {locale === 'nb' ? 'Be om tilbud' : 'Request quote'}
-                  </span>
-                  <div className="absolute inset-0 -translate-x-full rounded-2xl bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full"></div>
-                </button>
-                <button className="group rounded-2xl border border-slate-700/50 bg-slate-800/30 px-12 py-6 font-medium text-slate-200 backdrop-blur-xl transition-all duration-500 hover:border-amber-500/50 hover:bg-slate-700/40 hover:text-white focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-950 focus:outline-none">
-                  <span className="text-lg tracking-wide transition-colors duration-300">
-                    {locale === 'nb' ? 'Se tidligere arbeid' : 'View previous work'}
-                  </span>
-                </button>
-              </div>
-              <div className="border-t border-slate-800/50 pt-8">
-                <p className="leading-relaxed font-light tracking-wide text-slate-500">
-                  {locale === 'nb'
-                    ? 'Svar innen 24 timer • Gratis konsultasjon • Ingen forpliktelser'
-                    : 'Response within 24 hours • Free consultation • No obligations'}
-                </p>
-              </div>
             </div>
           </div>
         </div>

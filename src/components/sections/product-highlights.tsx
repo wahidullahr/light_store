@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import Container from '@/components/ui/container';
 import SectionHeader from '@/components/ui/section-header';
@@ -151,8 +152,8 @@ export default function ProductHighlights() {
 
           {/* View All Products CTA */}
           <motion.div variants={cardVariants} className="mt-12 text-center">
-            <a
-              href="#kontakt"
+            <Link
+              href="/products"
               className="inline-flex items-center gap-2 font-medium text-[#FFB703] transition-colors duration-200 hover:text-[#E8A502]"
             >
               Se hele kolleksjonen
@@ -164,7 +165,7 @@ export default function ProductHighlights() {
                   d="M9 5l7 7-7 7"
                 />
               </svg>
-            </a>
+            </Link>
           </motion.div>
         </motion.div>
       </Container>
