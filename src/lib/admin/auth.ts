@@ -21,12 +21,23 @@ export async function isAdminClient(): Promise<boolean> {
     }
 
     // Wait a bit longer for session to be fully established
-    await new Promise((resolve) => setTimeout(resolve, 200));
+    await new Promise(resolve => setTimeout(resolve, 200));
+
+    // First, verify we have a valid session
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
+
+    if (!session) {
+      console.error('No session found when checking admin status');
+      return false;
+    }
 
     // Use the user's own ID to check - RLS allows users to see their own record
+    // Note: We use .eq('id', user.id) but RLS policy uses auth.uid() which should match
     const { data, error } = await supabase
       .from('admin_users')
-      .select('id, is_active, email')
+      .select('id, is_active, email, role')
       .eq('id', user.id)
       .single();
 
@@ -97,7 +108,7 @@ export async function signInAdmin(email: string, password: string) {
     }
 
     // Wait for session to be fully established
-    await new Promise((resolve) => setTimeout(resolve, 300));
+    await new Promise(resolve => setTimeout(resolve, 300));
 
     // Get session to verify it's established
     const {
