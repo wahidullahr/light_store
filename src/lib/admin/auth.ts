@@ -85,7 +85,7 @@ export async function signInAdmin(email: string, password: string) {
       return {
         success: false,
         error:
-          'User is not an admin. Please make sure the user exists in the admin_users table. See CMS_SETUP_GUIDE.md for instructions.',
+          'User is not an admin. Please add this user to the admin_users table in Supabase. See ADD_ADMIN_USER.md for quick instructions.',
       };
     }
 
