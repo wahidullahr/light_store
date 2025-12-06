@@ -1,6 +1,8 @@
 import { useTranslations } from 'next-intl'; // eslint-disable-line @typescript-eslint/no-unused-vars
 import Image from 'next/image';
 import Link from 'next/link';
+import ProductHighlights from '@/components/sections/product-highlights';
+import { getFeaturedProducts } from '@/lib/api/products';
 
 interface IPageProps {
   params: Promise<{ locale: string }>;
@@ -8,6 +10,7 @@ interface IPageProps {
 
 export default async function HomePage({ params }: IPageProps) {
   const { locale } = await params;
+  const featuredProducts = await getFeaturedProducts(locale);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
@@ -203,135 +206,7 @@ export default async function HomePage({ params }: IPageProps) {
       </section>
 
       {/* Premium Product Highlights */}
-      <section className="relative overflow-hidden py-40">
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950"></div>
-        <div className="bg-gradient-radial absolute top-0 left-1/2 h-96 w-96 -translate-x-1/2 transform rounded-full from-amber-500/5 to-transparent blur-3xl"></div>
-
-        <div className="relative container mx-auto px-4">
-          <div className="mb-20 text-center">
-            <h2 className="font-fraunces mb-6 text-4xl font-light tracking-tight text-slate-100 md:text-5xl lg:text-6xl">
-              {locale === 'nb' ? (
-                <>
-                  <span className="text-slate-300">Hvorfor velge</span>{' '}
-                  <span className="bg-gradient-to-r from-amber-300 to-amber-500 bg-clip-text text-transparent">
-                    våre lamper
-                  </span>
-                </>
-              ) : (
-                <>
-                  <span className="text-slate-300">Why choose</span>{' '}
-                  <span className="bg-gradient-to-r from-amber-300 to-amber-500 bg-clip-text text-transparent">
-                    our lamps
-                  </span>
-                </>
-              )}
-            </h2>
-            <p className="mx-auto max-w-3xl text-xl leading-relaxed font-light text-slate-400">
-              {locale === 'nb'
-                ? 'Tre grunner til at våre trelamper skiller seg ut fra resten'
-                : 'Three reasons why our wooden lamps stand out from the rest'}
-            </p>
-          </div>
-
-          <div className="grid gap-8 md:grid-cols-3 lg:gap-12">
-            <div className="group relative overflow-hidden rounded-3xl border border-slate-800/50 bg-gradient-to-br from-slate-800/20 to-slate-900/40 p-10 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-amber-500/30 hover:shadow-2xl hover:shadow-amber-500/10">
-              <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-amber-500/0 via-amber-400/10 to-amber-500/0 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100"></div>
-              <div className="relative">
-                <div className="relative mb-8">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400 to-amber-600 shadow-2xl shadow-amber-500/30 transition-transform duration-300 group-hover:scale-110">
-                    <svg
-                      className="h-8 w-8 text-slate-950"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-                      />
-                    </svg>
-                  </div>
-                  <div className="absolute inset-0 h-16 w-16 rounded-2xl bg-amber-400 opacity-20 blur-lg transition-opacity duration-300 group-hover:opacity-40"></div>
-                </div>
-                <h3 className="mb-6 text-2xl font-light text-slate-100 transition-colors duration-300 group-hover:text-white">
-                  {locale === 'nb' ? 'Håndlaget kvalitet' : 'Handcrafted Quality'}
-                </h3>
-                <p className="leading-relaxed font-light text-slate-400 transition-colors duration-300 group-hover:text-slate-300">
-                  {locale === 'nb'
-                    ? 'Hver lampe er unikt formet for hånd med tradisjonelle teknikker og årevis med erfaring.'
-                    : 'Each lamp is uniquely hand-shaped using traditional techniques and years of experience.'}
-                </p>
-              </div>
-            </div>
-
-            <div className="group relative overflow-hidden rounded-3xl border border-slate-800/50 bg-gradient-to-br from-slate-800/20 to-slate-900/40 p-10 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-amber-500/30 hover:shadow-2xl hover:shadow-amber-500/10">
-              <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-amber-500/0 via-amber-400/10 to-amber-500/0 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100"></div>
-              <div className="relative">
-                <div className="relative mb-8">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400 to-amber-600 shadow-2xl shadow-amber-500/30 transition-transform duration-300 group-hover:scale-110">
-                    <svg
-                      className="h-8 w-8 text-slate-950"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 104 0 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"
-                      />
-                    </svg>
-                  </div>
-                  <div className="absolute inset-0 h-16 w-16 rounded-2xl bg-amber-400 opacity-20 blur-lg transition-opacity duration-300 group-hover:opacity-40"></div>
-                </div>
-                <h3 className="mb-6 text-2xl font-light text-slate-100 transition-colors duration-300 group-hover:text-white">
-                  {locale === 'nb' ? 'Bærekraftige materialer' : 'Sustainable Materials'}
-                </h3>
-                <p className="leading-relaxed font-light text-slate-400 transition-colors duration-300 group-hover:text-slate-300">
-                  {locale === 'nb'
-                    ? 'Vi bruker kun førsteklasses treverk fra bærekraftig skogbruk i Norge.'
-                    : 'We use only premium wood from sustainable forestry in Norway.'}
-                </p>
-              </div>
-            </div>
-
-            <div className="group relative overflow-hidden rounded-3xl border border-slate-800/50 bg-gradient-to-br from-slate-800/20 to-slate-900/40 p-10 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-amber-500/30 hover:shadow-2xl hover:shadow-amber-500/10">
-              <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-amber-500/0 via-amber-400/10 to-amber-500/0 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100"></div>
-              <div className="relative">
-                <div className="relative mb-8">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400 to-amber-600 shadow-2xl shadow-amber-500/30 transition-transform duration-300 group-hover:scale-110">
-                    <svg
-                      className="h-8 w-8 text-slate-950"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
-                  </div>
-                  <div className="absolute inset-0 h-16 w-16 rounded-2xl bg-amber-400 opacity-20 blur-lg transition-opacity duration-300 group-hover:opacity-40"></div>
-                </div>
-                <h3 className="mb-6 text-2xl font-light text-slate-100 transition-colors duration-300 group-hover:text-white">
-                  {locale === 'nb' ? '2 års garanti' : '2 Year Warranty'}
-                </h3>
-                <p className="leading-relaxed font-light text-slate-400 transition-colors duration-300 group-hover:text-slate-300">
-                  {locale === 'nb'
-                    ? 'Vi står bak kvaliteten på våre produkter med full garanti i 2 år.'
-                    : 'We stand behind the quality of our products with a full 2-year warranty.'}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ProductHighlights products={featuredProducts} />
 
       {/* Elegant Craft Section */}
       <section className="relative overflow-hidden py-24 lg:py-32">
@@ -488,7 +363,7 @@ export default async function HomePage({ params }: IPageProps) {
                   icon: 'M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z',
                   title: locale === 'nb' ? 'Send e-post' : 'Send email',
                   subtitle: locale === 'nb' ? 'Beskriv ditt prosjekt' : 'Describe your project',
-                  contact: 'kontakt@lamper.no',
+                  contact: 'kontakt@huslampe.no',
                 },
                 {
                   icon: 'M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z',

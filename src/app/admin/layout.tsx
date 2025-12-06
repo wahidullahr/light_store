@@ -1,11 +1,12 @@
-import AdminNavbar from '@/components/admin/Navbar';
+import '../globals.css';
+import AdminLayoutClient from './admin-layout-client';
 
-export default async function AdminLayout({ children }: { children: React.ReactNode }) {
+export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-slate-950">
-      <AdminNavbar />
-      <main className="p-6">{children}</main>
-    </div>
+    <html lang="en">
+      <body className="bg-slate-950 text-slate-100 antialiased">
+        <AdminLayoutClient>{children}</AdminLayoutClient>
+      </body>
+    </html>
   );
 }
-

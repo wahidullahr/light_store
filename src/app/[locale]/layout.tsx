@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter, Fraunces } from 'next/font/google';
 import { notFound } from 'next/navigation';
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
 import { locales } from '@/lib/i18n';
 import '../globals.css';
 import Navbar from '@/components/Navbar';
@@ -48,13 +50,26 @@ export default async function RootLayout({ children, params }: IRootLayoutProps)
     notFound();
   }
 
+  // Providing all messages to the client
+  // side is the easiest way to get started
+  let messages;
+  try {
+    messages = await getMessages();
+  } catch (error) {
+    console.error('Failed to load messages:', error);
+    // Fallback to empty messages to prevent crash
+    messages = {};
+  }
+
   return (
     <html lang={locale} className="scroll-smooth">
       <body
         className={`${inter.variable} ${fraunces.variable} bg-[#0B0B0B] text-[#F6F3EC] antialiased`}
       >
-        <Navbar locale={locale} />
-        <main>{children}</main>
+        <NextIntlClientProvider messages={messages}>
+          <Navbar locale={locale} />
+          <main>{children}</main>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

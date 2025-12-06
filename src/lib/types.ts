@@ -1,7 +1,7 @@
 export interface ISite {
   name: string;
   tagline: string;
-  localeDefault: "nb" | "en";
+  localeDefault: 'nb' | 'en';
   ctaPrimary: { label: string; href: string };
   ctaSecondary?: { label: string; href: string };
   socials?: { label: string; href: string }[];
@@ -10,15 +10,19 @@ export interface ISite {
 }
 
 export interface IProduct {
-  id: string;
+  id: string | number;
   name: string;
-  wood: "Eik" | "Ask" | "Valnøtt" | "Bjørk" | "Oak" | "Ash" | "Walnut" | "Birch" | string;
-  colorTempK: number;
-  size: string;
+  wood: string;
   priceRange: string;
   images: { src: string; alt: string; width: number; height: number }[];
   description: string;
   badges?: string[];
+  // Extended properties for product details page compatibility
+  category?: string;
+  price?: string;
+  image?: string;
+  features?: string[];
+  detailImages?: string[];
 }
 
 export interface ITestimonial {
@@ -82,6 +86,7 @@ export interface ICommon {
     };
     faq: {
       title: string;
+      header: string;
     };
     cta: {
       title: string;

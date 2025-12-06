@@ -14,14 +14,9 @@ export interface Database {
           name_en: string;
           wood_type_nb: string | null;
           wood_type_en: string | null;
-          color_temp_k: number | null;
-          size: string | null;
-          price_min: number | null;
-          price_max: number | null;
+          price: number | null;
           description_nb: string | null;
           description_en: string | null;
-          detail_description_nb: string | null;
-          detail_description_en: string | null;
           category_nb: string | null;
           category_en: string | null;
           features_nb: string[] | null;
@@ -81,4 +76,3 @@ export type SiteContentInsert = Database['public']['Tables']['site_content']['In
 export type SiteContentUpdate = Database['public']['Tables']['site_content']['Update'];
 
 export type AdminUser = Database['public']['Tables']['admin_users']['Row'];
-

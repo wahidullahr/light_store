@@ -1,5 +1,5 @@
--- Huslampe CMS Database Schema
--- Run this in your Supabase SQL Editor
+-- Huslampe Database Schema
+-- Clean, simple, and robust
 
 -- Enable UUID extension
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
@@ -7,7 +7,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 -- Products table
 CREATE TABLE IF NOT EXISTS products (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-  product_id TEXT UNIQUE NOT NULL, -- e.g., "fjord-01"
+  product_id TEXT UNIQUE NOT NULL,
   name_nb TEXT NOT NULL,
   name_en TEXT NOT NULL,
   wood_type_nb TEXT,
@@ -22,20 +22,20 @@ CREATE TABLE IF NOT EXISTS products (
   detail_description_en TEXT,
   category_nb TEXT,
   category_en TEXT,
-  features_nb TEXT[], -- Array of features in Norwegian
-  features_en TEXT[], -- Array of features in English
-  images JSONB DEFAULT '[]'::jsonb, -- Array of image objects
-  detail_images JSONB DEFAULT '[]'::jsonb, -- Array of detail image objects
+  features_nb TEXT[],
+  features_en TEXT[],
+  images JSONB DEFAULT '[]'::jsonb,
+  detail_images JSONB DEFAULT '[]'::jsonb,
   is_active BOOLEAN DEFAULT true,
   display_order INTEGER DEFAULT 0,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
--- Content management table for site-wide content
+-- Site content table
 CREATE TABLE IF NOT EXISTS site_content (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-  content_key TEXT UNIQUE NOT NULL, -- e.g., "hero_title", "site_tagline"
+  content_key TEXT UNIQUE NOT NULL,
   locale TEXT NOT NULL CHECK (locale IN ('nb', 'en')),
   content_type TEXT NOT NULL CHECK (content_type IN ('text', 'json', 'html')),
   content_value TEXT NOT NULL,
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS site_content (
   UNIQUE(content_key, locale)
 );
 
--- Admin users table (extends Supabase auth.users)
+-- Admin users table (links to auth.users)
 CREATE TABLE IF NOT EXISTS admin_users (
   id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
   email TEXT UNIQUE NOT NULL,
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS admin_users (
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
--- Create indexes for better performance
+-- Indexes
 CREATE INDEX IF NOT EXISTS idx_products_product_id ON products(product_id);
 CREATE INDEX IF NOT EXISTS idx_products_is_active ON products(is_active);
 CREATE INDEX IF NOT EXISTS idx_products_display_order ON products(display_order);
@@ -68,55 +68,31 @@ ALTER TABLE site_content ENABLE ROW LEVEL SECURITY;
 ALTER TABLE admin_users ENABLE ROW LEVEL SECURITY;
 
 -- RLS Policies for products (public read, admin write)
-CREATE POLICY "Products are viewable by everyone" ON products
-  FOR SELECT USING (true);
+CREATE POLICY "Public can view products" ON products FOR SELECT USING (true);
 
-CREATE POLICY "Only admins can insert products" ON products
-  FOR INSERT WITH CHECK (
-    EXISTS (
-      SELECT 1 FROM admin_users
-      WHERE admin_users.id = auth.uid()
-      AND admin_users.is_active = true
-    )
-  );
-
-CREATE POLICY "Only admins can update products" ON products
-  FOR UPDATE USING (
-    EXISTS (
-      SELECT 1 FROM admin_users
-      WHERE admin_users.id = auth.uid()
-      AND admin_users.is_active = true
-    )
-  );
-
-CREATE POLICY "Only admins can delete products" ON products
-  FOR DELETE USING (
-    EXISTS (
-      SELECT 1 FROM admin_users
-      WHERE admin_users.id = auth.uid()
-      AND admin_users.is_active = true
-    )
-  );
+CREATE POLICY "Admins can manage products" ON products FOR ALL USING (
+  EXISTS (
+    SELECT 1 FROM admin_users
+    WHERE admin_users.id = auth.uid()
+    AND admin_users.is_active = true
+  )
+);
 
 -- RLS Policies for site_content (public read, admin write)
-CREATE POLICY "Site content is viewable by everyone" ON site_content
-  FOR SELECT USING (true);
+CREATE POLICY "Public can view content" ON site_content FOR SELECT USING (true);
 
-CREATE POLICY "Only admins can manage site content" ON site_content
-  FOR ALL USING (
-    EXISTS (
-      SELECT 1 FROM admin_users
-      WHERE admin_users.id = auth.uid()
-      AND admin_users.is_active = true
-    )
-  );
+CREATE POLICY "Admins can manage content" ON site_content FOR ALL USING (
+  EXISTS (
+    SELECT 1 FROM admin_users
+    WHERE admin_users.id = auth.uid()
+    AND admin_users.is_active = true
+  )
+);
 
--- RLS Policies for admin_users
--- Allow users to check their own admin status (needed for login verification)
-CREATE POLICY "Users can view their own admin record" ON admin_users
+-- RLS Policy for admin_users (CRITICAL - allows users to check their own admin status)
+CREATE POLICY "Users can view own admin record" ON admin_users
   FOR SELECT USING (id = auth.uid());
 
--- Allow admins to view all admin users
 CREATE POLICY "Admins can view all admin users" ON admin_users
   FOR SELECT USING (
     EXISTS (
@@ -126,7 +102,7 @@ CREATE POLICY "Admins can view all admin users" ON admin_users
     )
   );
 
--- Function to update updated_at timestamp
+-- Auto-update updated_at trigger
 CREATE OR REPLACE FUNCTION update_updated_at_column()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -135,7 +111,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- Triggers to auto-update updated_at
 CREATE TRIGGER update_products_updated_at
   BEFORE UPDATE ON products
   FOR EACH ROW
@@ -150,4 +125,3 @@ CREATE TRIGGER update_admin_users_updated_at
   BEFORE UPDATE ON admin_users
   FOR EACH ROW
   EXECUTE FUNCTION update_updated_at_column();
-

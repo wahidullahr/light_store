@@ -3,15 +3,20 @@
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { signOutAdmin } from '@/lib/admin/auth';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function AdminNavbar() {
   const pathname = usePathname();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
-  // Don't show navbar on login page
-  if (pathname === '/admin/login') {
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Don't show navbar on login page or test page
+  if (!mounted || pathname === '/admin/login' || pathname === '/admin/test') {
     return null;
   }
 
@@ -25,7 +30,6 @@ export default function AdminNavbar() {
   const navItems = [
     { href: '/admin', label: 'Dashboard', icon: '📊' },
     { href: '/admin/products', label: 'Products', icon: '💡' },
-    { href: '/admin/content', label: 'Content', icon: '📝' },
     { href: '/admin/images', label: 'Images', icon: '🖼️' },
   ];
 
@@ -38,7 +42,7 @@ export default function AdminNavbar() {
               Huslampe Admin
             </Link>
             <div className="hidden md:flex md:space-x-4">
-              {navItems.map((item) => (
+              {navItems.map(item => (
                 <Link
                   key={item.href}
                   href={item.href}
@@ -58,9 +62,23 @@ export default function AdminNavbar() {
             <Link
               href="/"
               target="_blank"
-              className="text-sm text-slate-400 hover:text-white"
+              className="flex items-center gap-2 rounded-lg bg-amber-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-amber-500"
             >
-              View Site
+              <span>View Website</span>
+              <svg
+                className="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                />
+              </svg>
             </Link>
             <button
               onClick={handleSignOut}
@@ -75,4 +93,3 @@ export default function AdminNavbar() {
     </nav>
   );
 }
-
