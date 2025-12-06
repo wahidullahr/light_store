@@ -113,11 +113,19 @@ export default function AdminLoginPage() {
                   </svg>
                   <div className="flex-1">
                     <p className="font-medium">{error}</p>
-                    {error.includes('admin_users table') && (
-                      <p className="mt-1 text-xs text-red-300">
-                        Please contact your administrator to add this user to the admin_users table
-                        via Supabase Dashboard.
-                      </p>
+                    {error.includes('admin_users') && (
+                      <div className="mt-2 space-y-1 text-xs text-red-300">
+                        <p>Quick checks:</p>
+                        <ol className="ml-4 list-decimal space-y-0.5">
+                          <li>Verify user exists in admin_users table</li>
+                          <li>Check that is_active = true</li>
+                          <li>Verify RLS policy exists (see DIAGNOSE_ADMIN_ISSUE.md)</li>
+                          <li>Check browser console (F12) for detailed errors</li>
+                        </ol>
+                        <p className="mt-2 font-medium">
+                          See DIAGNOSE_ADMIN_ISSUE.md for step-by-step troubleshooting
+                        </p>
+                      </div>
                     )}
                   </div>
                 </div>
