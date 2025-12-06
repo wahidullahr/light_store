@@ -72,8 +72,23 @@ export default function AdminLoginPage() {
             </div>
 
             {error && (
-              <div className="rounded-lg bg-red-500/10 border border-red-500/20 px-4 py-3 text-sm text-red-400">
-                {error}
+              <div className="space-y-3">
+                <div className="rounded-lg bg-red-500/10 border border-red-500/20 px-4 py-3 text-sm text-red-400">
+                  {error}
+                </div>
+                {error.includes('admin_users table') && (
+                  <div className="rounded-lg border border-amber-500/20 bg-amber-500/10 px-4 py-3">
+                    <p className="mb-2 text-sm font-medium text-amber-400">
+                      Need to add this user as admin?
+                    </p>
+                    <Link
+                      href="/admin/add-admin"
+                      className="text-sm text-amber-300 underline hover:text-amber-200"
+                    >
+                      Add user to admin_users table →
+                    </Link>
+                  </div>
+                )}
               </div>
             )}
 

@@ -6,7 +6,14 @@
 
 **Problem**: You can sign in with Supabase Auth, but get "User is not an admin" error.
 
-**Solution**:
+**Solution - Easiest Method**:
+1. Go to: `http://localhost:3000/admin/add-admin`
+2. Enter the email of the user you just created
+3. Click "Add Admin User"
+4. The user will be automatically added to the `admin_users` table
+5. Go back to login and sign in again
+
+**Solution - Manual Method (SQL)**:
 1. Make sure you've run the updated `supabase/schema.sql` which includes the fixed RLS policy
 2. Verify the user exists in `admin_users` table:
    ```sql
