@@ -112,7 +112,7 @@ export default function ContactPage({ params }: IContactPageProps) {
         </svg>
       ),
       title: locale === 'nb' ? 'E-post' : 'Email',
-      content: <p>kontakt@tindra.no</p>,
+      content: <p>kontakt@huslampe.no</p>,
     },
     {
       icon: (
@@ -562,7 +562,7 @@ export default function ContactPage({ params }: IContactPageProps) {
             </p>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
               <a
-                href={`mailto:kontakt@tindra.no`}
+                href={`mailto:kontakt@huslampe.no`}
                 className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 px-8 py-4 font-medium text-slate-950 transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl hover:shadow-amber-500/25"
               >
                 <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -573,7 +573,7 @@ export default function ContactPage({ params }: IContactPageProps) {
                     d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                   />
                 </svg>
-                kontakt@tindra.no
+                kontakt@huslampe.no
               </a>
               <a
                 href={`tel:+4798765432`}

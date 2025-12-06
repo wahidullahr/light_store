@@ -127,7 +127,7 @@ export default function Navbar({ locale }: NavbarProps) {
             </div>
           </div>
 
-          {/* Larger Tindra Text Only - No Subtitle */}
+          {/* Larger Huslampe Text Only - No Subtitle */}
           <Link href={`/${locale}`} className="block">
             <div className="relative">
               {/* Epic ambient glow layers */}
@@ -140,28 +140,28 @@ export default function Navbar({ locale }: NavbarProps) {
               <div className="relative z-10">
                 <h1 className="font-fraunces relative text-3xl font-bold tracking-tight transition-all duration-500 group-hover:scale-105">
                   {/* Multiple shadow layers for depth */}
-                  <span className="absolute inset-0 text-amber-400/40 blur-lg">Tindra</span>
-                  <span className="absolute inset-0 text-amber-300/35 blur-md">Tindra</span>
-                  <span className="absolute inset-0 text-amber-200/25 blur-sm">Tindra</span>
+                  <span className="absolute inset-0 text-amber-400/40 blur-lg">Huslampe</span>
+                  <span className="absolute inset-0 text-amber-300/35 blur-md">Huslampe</span>
+                  <span className="absolute inset-0 text-amber-200/25 blur-sm">Huslampe</span>
 
                   {/* Main illuminated text with complex gradient */}
                   <span className="relative bg-gradient-to-r from-amber-50 via-amber-50 via-white to-amber-50 bg-clip-text text-transparent drop-shadow-xl filter">
-                    Tindra
+                    Huslampe
                   </span>
 
                   {/* Intense warm light overlay */}
                   <span className="absolute inset-0 bg-gradient-to-r from-amber-100/60 via-amber-50/35 via-yellow-100/45 to-amber-100/30 bg-clip-text text-transparent">
-                    Tindra
+                    Huslampe
                   </span>
 
                   {/* Brilliant highlight core */}
                   <span className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-50/25 via-white/35 to-transparent bg-clip-text text-transparent">
-                    Tindra
+                    Huslampe
                   </span>
 
                   {/* Electric highlight edge */}
                   <span className="absolute inset-0 bg-gradient-to-r from-amber-50/30 via-white/20 to-amber-50/30 bg-clip-text text-transparent">
-                    Tindra
+                    Huslampe
                   </span>
                 </h1>
 
@@ -374,7 +374,7 @@ export default function Navbar({ locale }: NavbarProps) {
                   </h3>
                   <div className="space-y-2">
                     <a
-                      href="mailto:kontakt@tindra.no"
+                      href="mailto:kontakt@huslampe.no"
                       className="group flex items-center space-x-3 rounded-xl border border-slate-600 bg-slate-700 px-4 py-3 transition-all duration-300 hover:border-amber-500 hover:bg-slate-600 hover:shadow-lg hover:shadow-amber-500/10"
                       onClick={() => setIsMenuOpen(false)}
                     >
@@ -392,7 +392,7 @@ export default function Navbar({ locale }: NavbarProps) {
                         />
                       </svg>
                       <div>
-                        <div className="text-sm font-medium text-slate-100">kontakt@tindra.no</div>
+                        <div className="text-sm font-medium text-slate-100">kontakt@huslampe.no</div>
                         <div className="text-xs text-slate-400">
                           {locale === 'nb' ? 'E-post' : 'E-mail'}
                         </div>

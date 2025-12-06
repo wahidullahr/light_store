@@ -1,6 +1,6 @@
 # Development Workflow & Best Practices
 
-This document outlines the development workflow and best practices for the Tindra Light Store project.
+This document outlines the development workflow and best practices for the Huslampe Light Store project.
 
 ## Development Workflow
 

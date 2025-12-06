@@ -15,9 +15,9 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: 'Tindra - Håndlagde trelamper som lyser opp ditt hjem',
+  title: 'Huslampe - Håndlagde trelamper som lyser opp ditt hjem',
   description:
-    'Opplev Tindra sine unike, håndlagde trelamper som bringer varme og nordisk eleganse til hjemmet ditt. Hver lampe er et kunstverks skapt av bærekraftige norske tresorter.',
+    'Opplev Huslampe sine unike, håndlagde trelamper som bringer varme og nordisk eleganse til hjemmet ditt. Hver lampe er et kunstverks skapt av bærekraftige norske tresorter.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

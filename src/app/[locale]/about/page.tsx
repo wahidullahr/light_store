@@ -210,8 +210,8 @@ export default async function AboutPage({ params }: IAboutPageProps) {
             </h2>
             <p className="mx-auto max-w-3xl text-xl leading-relaxed font-light text-slate-400">
               {locale === 'nb'
-                ? 'Møt de talentfulle håndverkerne bak Tindra'
-                : 'Meet the talented artisans behind Tindra'}
+                ? 'Møt de talentfulle håndverkerne bak Huslampe'
+                : 'Meet the talented artisans behind Huslampe'}
             </p>
           </div>
 

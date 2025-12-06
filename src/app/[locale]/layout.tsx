@@ -27,11 +27,11 @@ export async function generateMetadata({
 
   return {
     title: isNorwegian
-      ? 'Tindra - Håndlagde trelamper som lyser opp ditt hjem'
-      : 'Tindra - Handcrafted wooden lamps that illuminate your home',
+      ? 'Huslampe - Håndlagde trelamper som lyser opp ditt hjem'
+      : 'Huslampe - Handcrafted wooden lamps that illuminate your home',
     description: isNorwegian
-      ? 'Opplev Tindra sine unike, håndlagde trelamper som bringer varme og nordisk eleganse til hjemmet ditt. Hver lampe er et kunstverks skapt av bærekraftige norske tresorter.'
-      : "Discover Tindra's unique handcrafted wooden lamps that bring warmth and Nordic elegance to your home. Each lamp is a work of art created from sustainable Norwegian wood.",
+      ? 'Opplev Huslampe sine unike, håndlagde trelamper som bringer varme og nordisk eleganse til hjemmet ditt. Hver lampe er et kunstverks skapt av bærekraftige norske tresorter.'
+      : "Discover Huslampe's unique handcrafted wooden lamps that bring warmth and Nordic elegance to your home. Each lamp is a work of art created from sustainable Norwegian wood.",
   };
 }
 

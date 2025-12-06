@@ -1,10 +1,10 @@
 {
-  "name": "Tindra",
-  "tagline": "Where light meets artistry - handcrafted wooden lamps that sparkle with Nordic soul.",
+  "name": "Huslampe",
+  "tagline": "Where light meets artistry - handcrafted wooden lamps that illuminate your home.",
   "localeDefault": "en",
   "ctaPrimary": { "label": "Contact for pricing", "href": "#contact" },
   "ctaSecondary": { "label": "View collection", "href": "#products" },
-  "socials": [{ "label": "Instagram", "href": "https://instagram.com/tindrawoodcraft" }],
-  "contact": { "email": "hello@tindra.no" },
+  "socials": [{ "label": "Instagram", "href": "https://instagram.com/huslampe" }],
+  "contact": { "email": "hello@huslampe.no" },
   "badges": ["Handcrafted in Norway", "Sustainably sourced wood", "2-year warranty"]
 }
