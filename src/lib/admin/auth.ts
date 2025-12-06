@@ -42,15 +42,36 @@ export async function isAdminClient(): Promise<boolean> {
       .single();
 
     if (error) {
-      console.error('Admin check error:', error);
-      console.error('Error details:', {
-        code: error.code,
-        message: error.message,
-        details: error.details,
-        hint: error.hint,
-        userId: user.id,
-        userEmail: user.email,
-      });
+      // Log error in multiple ways to ensure we see it
+      console.error('=== ADMIN CHECK ERROR ===');
+      console.error('Error object:', JSON.stringify(error, null, 2));
+      console.error('Error code:', error.code);
+      console.error('Error message:', error.message);
+      console.error('Error details:', error.details);
+      console.error('Error hint:', error.hint);
+      console.error('User ID:', user.id);
+      console.error('User Email:', user.email);
+      console.error('Session User ID:', session?.user?.id);
+      console.error('Session exists:', !!session);
+      console.error('========================');
+      
+      // If it's a PGRST116 (not found), the user might not be in admin_users or RLS is blocking
+      if (error.code === 'PGRST116') {
+        console.error('❌ PGRST116: User not found in admin_users or RLS policy is blocking access');
+        console.error('Possible causes:');
+        console.error('1. User is not in admin_users table');
+        console.error('2. RLS policy "Users can view their own admin record" is missing or incorrect');
+        console.error('3. Session is not properly authenticated (auth.uid() is null)');
+        console.error('4. User ID mismatch between session and admin_users table');
+        console.error('');
+        console.error('🔧 Fix: Run this SQL in Supabase:');
+        console.error(`
+DROP POLICY IF EXISTS "Users can view their own admin record" ON admin_users;
+CREATE POLICY "Users can view their own admin record" ON admin_users
+  FOR SELECT USING (id = auth.uid());
+        `);
+      }
+      
       return false;
     }
 
