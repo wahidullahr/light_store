@@ -392,7 +392,9 @@ export default function Navbar({ locale }: NavbarProps) {
                         />
                       </svg>
                       <div>
-                        <div className="text-sm font-medium text-slate-100">kontakt@huslampe.no</div>
+                        <div className="text-sm font-medium text-slate-100">
+                          kontakt@huslampe.no
+                        </div>
                         <div className="text-xs text-slate-400">
                           {locale === 'nb' ? 'E-post' : 'E-mail'}
                         </div>
