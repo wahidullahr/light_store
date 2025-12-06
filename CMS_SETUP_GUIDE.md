@@ -74,11 +74,13 @@ VALUES ('user-id-here', 'kontakt@huslampe.no', 'admin', true);
 ## Features
 
 ### Dashboard (`/admin`)
+
 - Overview statistics
 - Quick actions
 - Recent activity
 
 ### Products Management (`/admin/products`)
+
 - View all products
 - Create new products
 - Edit existing products
@@ -87,11 +89,13 @@ VALUES ('user-id-here', 'kontakt@huslampe.no', 'admin', true);
 - Upload product images
 
 ### Content Management (`/admin/content`)
+
 - Manage site-wide content
 - Edit text content for different locales
 - Update hero sections, taglines, etc.
 
 ### Image Upload (`/admin/images`)
+
 - Upload images to Supabase Storage
 - Organize images by folder
 - Get public URLs for use in products
@@ -99,6 +103,7 @@ VALUES ('user-id-here', 'kontakt@huslampe.no', 'admin', true);
 ## Database Schema
 
 ### Products Table
+
 - `id`: UUID (primary key)
 - `product_id`: Unique identifier (e.g., "fjord-01")
 - `name_nb`, `name_en`: Product names in both languages
@@ -108,6 +113,7 @@ VALUES ('user-id-here', 'kontakt@huslampe.no', 'admin', true);
 - `display_order`: Integer for sorting
 
 ### Site Content Table
+
 - `id`: UUID (primary key)
 - `content_key`: Unique key (e.g., "hero_title")
 - `locale`: "nb" or "en"
@@ -115,6 +121,7 @@ VALUES ('user-id-here', 'kontakt@huslampe.no', 'admin', true);
 - `content_value`: The actual content
 
 ### Admin Users Table
+
 - `id`: UUID (references auth.users)
 - `email`: Admin email
 - `role`: "admin" or "editor"
@@ -139,15 +146,18 @@ VALUES ('user-id-here', 'kontakt@huslampe.no', 'admin', true);
 ## Troubleshooting
 
 ### "User is not an admin" error
+
 - Make sure user exists in `admin_users` table
 - Check that `is_active` is `true`
 
 ### Image upload fails
+
 - Verify Storage bucket `images` exists
 - Check bucket permissions
 - Ensure RLS policies allow uploads
 
 ### Database errors
+
 - Verify schema is created correctly
 - Check RLS policies are set up
 - Ensure admin user has proper permissions
@@ -159,4 +169,3 @@ VALUES ('user-id-here', 'kontakt@huslampe.no', 'admin', true);
 3. Create products in the dashboard
 4. Update site content
 5. Test the frontend to see changes
-

@@ -10,6 +10,11 @@ export default function AdminNavbar() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
+  // Don't show navbar on login page
+  if (pathname === '/admin/login') {
+    return null;
+  }
+
   const handleSignOut = async () => {
     setLoading(true);
     await signOutAdmin();
