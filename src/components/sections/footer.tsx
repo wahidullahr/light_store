@@ -64,19 +64,19 @@ export default function Footer() {
                 <div className="flex items-center gap-3 text-slate-300">
                   <Mail className="w-4 h-4 text-[#FFB703]" />
                   <a 
-                    href="mailto:hei@nordlystrelys.no"
+                    href="mailto:hei@huslampe.no"
                     className="hover:text-[#FFB703] transition-colors"
                   >
-                    hei@nordlystrelys.no
+                    hei@huslampe.no
                   </a>
                 </div>
                 <div className="flex items-center gap-3 text-slate-300">
                   <Phone className="w-4 h-4 text-[#FFB703]" />
                   <a 
-                    href="tel:+4740000000"
+                    href="tel:+4746582208"
                     className="hover:text-[#FFB703] transition-colors"
                   >
-                    +47 40 00 00 00
+                    +47 465 82 208
                   </a>
                 </div>
               </div>

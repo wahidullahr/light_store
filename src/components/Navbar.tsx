@@ -399,7 +399,7 @@ export default function Navbar({ locale }: NavbarProps) {
                       </div>
                     </a>
                     <a
-                      href="tel:+4798765432"
+                      href="tel:+4746582208"
                       className="group flex items-center space-x-3 rounded-xl border border-slate-600 bg-slate-700 px-4 py-3 transition-all duration-300 hover:border-amber-500 hover:bg-slate-600 hover:shadow-lg hover:shadow-amber-500/10"
                       onClick={() => setIsMenuOpen(false)}
                     >
@@ -417,7 +417,7 @@ export default function Navbar({ locale }: NavbarProps) {
                         />
                       </svg>
                       <div>
-                        <div className="text-sm font-medium text-slate-100">+47 987 65 432</div>
+                        <div className="text-sm font-medium text-slate-100">+47 465 82 208</div>
                         <div className="text-xs text-slate-400">
                           {locale === 'nb' ? 'Telefon' : 'Phone'}
                         </div>

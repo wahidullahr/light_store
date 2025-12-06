@@ -81,7 +81,7 @@ export default function ContactPage({ params }: IContactPageProps) {
       content: (
         <>
           <p>Bærums Verk</p>
-          <p>1349 Haslum</p>
+          <p>Bærum</p>
           <p>Norway</p>
         </>
       ),
@@ -98,7 +98,7 @@ export default function ContactPage({ params }: IContactPageProps) {
         </svg>
       ),
       title: locale === 'nb' ? 'Telefon' : 'Phone',
-      content: <p>+47 987 65 432</p>,
+      content: <p>+47 465 82 208</p>,
     },
     {
       icon: (
@@ -489,7 +489,7 @@ export default function ContactPage({ params }: IContactPageProps) {
 
                   <div className="mt-6 flex flex-wrap gap-4">
                     <a
-                      href="https://maps.google.com/?q=Bærums+Verk,+Norway"
+                      href="https://maps.google.com/?q=Bærums+Verk,+Bærum,+Norway"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 rounded-xl border border-amber-500/30 bg-gradient-to-r from-amber-500/20 to-amber-600/20 px-5 py-3 text-amber-200 transition-all duration-300 hover:from-amber-500/30 hover:to-amber-600/30 hover:text-amber-100"
@@ -517,7 +517,7 @@ export default function ContactPage({ params }: IContactPageProps) {
                     </a>
 
                     <a
-                      href={`tel:+4798765432`}
+                      href={`tel:+4746582208`}
                       className="inline-flex items-center gap-2 rounded-xl border border-slate-600/50 bg-gradient-to-r from-slate-700/50 to-slate-800/50 px-5 py-3 text-slate-200 transition-all duration-300 hover:from-slate-700/70 hover:to-slate-800/70"
                     >
                       <svg
@@ -533,7 +533,7 @@ export default function ContactPage({ params }: IContactPageProps) {
                           d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                         />
                       </svg>
-                      +47 987 65 432
+                      +47 465 82 208
                     </a>
                   </div>
                 </div>
@@ -587,7 +587,7 @@ export default function ContactPage({ params }: IContactPageProps) {
                     d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                   />
                 </svg>
-                +47 987 65 432
+                +47 465 82 208
               </a>
             </div>
           </div>

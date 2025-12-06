@@ -113,15 +113,16 @@ export function generateJsonLd(locale: string) {
       : 'Handcrafted wooden lamps with a warm Nordic feel. Sustainable materials and unique craftsmanship.',
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: '+47-40-00-00-00',
+      telephone: '+47-465-82-208',
       contactType: 'customer service',
-      email: isNorwegian ? 'hei@nordlystrelys.no' : 'hello@nordlyswoodlight.com',
+      email: isNorwegian ? 'hei@huslampe.no' : 'hello@huslampe.no',
       availableLanguage: ['Norwegian', 'English'],
     },
     address: {
       '@type': 'PostalAddress',
+      addressLocality: 'Bærums Verk',
+      addressRegion: 'Bærum',
       addressCountry: 'NO',
-      addressRegion: 'Norge',
     },
     foundingDate: '2024',
     keywords: isNorwegian

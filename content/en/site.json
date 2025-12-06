@@ -5,6 +5,6 @@
   "ctaPrimary": { "label": "Contact for pricing", "href": "#contact" },
   "ctaSecondary": { "label": "View collection", "href": "#products" },
   "socials": [{ "label": "Instagram", "href": "https://instagram.com/huslampe" }],
-  "contact": { "email": "hello@huslampe.no" },
+  "contact": { "email": "hello@huslampe.no", "phone": "+47 465 82 208" },
   "badges": ["Handcrafted in Norway", "Sustainably sourced wood", "2-year warranty"]
 }
