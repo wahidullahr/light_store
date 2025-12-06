@@ -1,15 +1,30 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { isAdminClient } from '@/lib/admin/auth';
 
 export default function AddAdminPage() {
   const router = useRouter();
+  const [isAuthorized, setIsAuthorized] = useState<boolean | null>(null);
+  const [checking, setChecking] = useState(true);
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      const admin = await isAdminClient();
+      setIsAuthorized(admin);
+      setChecking(false);
+      if (!admin) {
+        router.push('/admin/login');
+      }
+    };
+    checkAuth();
+  }, [router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -40,6 +55,35 @@ export default function AddAdminPage() {
       setLoading(false);
     }
   };
+
+  if (checking) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-slate-950">
+        <div className="text-white">Checking authorization...</div>
+      </div>
+    );
+  }
+
+  if (!isAuthorized) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-slate-950 px-4">
+        <div className="w-full max-w-md">
+          <div className="rounded-2xl border border-red-500/20 bg-slate-900 p-8 text-center">
+            <h1 className="mb-2 text-2xl font-bold text-white">Access Denied</h1>
+            <p className="mb-4 text-slate-400">
+              Only existing admins can add new admin users.
+            </p>
+            <Link
+              href="/admin/login"
+              className="inline-block rounded-lg bg-amber-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-amber-500"
+            >
+              Go to Login
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (success) {
     return (

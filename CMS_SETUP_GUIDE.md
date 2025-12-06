@@ -25,46 +25,51 @@ This guide will help you set up and use the Huslampe CMS Dashboard.
 
 ## Step 3: Create Admin User
 
-### Option A: Using Setup Page (Easiest - Recommended)
+**Important**: Admin user creation is restricted for security. Admin users must be created manually in Supabase Dashboard.
 
-1. Navigate to: `http://localhost:3000/admin/setup`
-2. Enter your email and password
-3. Click "Create Admin User"
-4. You'll be redirected to the login page
-5. Sign in with your new credentials
+### Steps to Create Admin User:
 
-**Note**: This only works for the first admin user. After that, use Option B or C.
+1. **Create user in Supabase Auth**:
+   - Go to Supabase Dashboard → Authentication → Users
+   - Click "Add user"
+   - Enter email and password
+   - Create the user
+   - Copy the user's UUID (you'll need this)
 
-### Option B: Using Supabase Dashboard
-
-1. Go to Authentication > Users in Supabase Dashboard
-2. Click "Add user"
-3. Enter email and password
-4. Create the user
-5. Copy the user's UUID
-6. Go to SQL Editor and run:
+2. **Add user to admin_users table**:
+   - Go to Supabase Dashboard → SQL Editor
+   - Run this SQL (replace with your user's UUID and email):
 
 ```sql
+-- First, get the user ID (if you don't have it)
+SELECT id, email FROM auth.users WHERE email = 'kontakt@huslampe.no';
+
+-- Then add them to admin_users table
 INSERT INTO admin_users (id, email, role, is_active)
-VALUES ('user-uuid-from-step-4', 'your-email@huslampe.no', 'admin', true);
+VALUES ('user-uuid-from-above', 'kontakt@huslampe.no', 'admin', true);
 ```
 
-### Option C: Using API
+### Example for Existing User:
 
-Use the setup API endpoint:
+If you already have a user `kontakt@huslampe.no` in Supabase Auth:
 
-```bash
-curl -X POST http://localhost:3000/api/admin/setup \
-  -H "Content-Type: application/json" \
-  -d '{"email":"admin@huslampe.no","password":"your-password"}'
+```sql
+-- Get the user ID
+SELECT id, email FROM auth.users WHERE email = 'kontakt@huslampe.no';
+
+-- Add to admin_users (replace 'user-id-here' with actual ID from above)
+INSERT INTO admin_users (id, email, role, is_active)
+VALUES ('user-id-here', 'kontakt@huslampe.no', 'admin', true);
 ```
+
+**Note**: Only existing admins can add new admins through the `/admin/add-admin` page. Regular users cannot create admin accounts.
 
 ## Step 4: Access Admin Dashboard
 
 1. Start your development server: `npm run dev`
-2. **First time setup**: Navigate to `http://localhost:3000/admin/setup` to create your first admin user
-3. **After setup**: Navigate to `http://localhost:3000/admin/login`
-4. Sign in with your admin credentials
+2. Navigate to: `http://localhost:3000/admin/login`
+3. Sign in with your admin credentials (e.g., `kontakt@huslampe.no`)
+4. You should now have access to the admin dashboard
 
 ## Features
 

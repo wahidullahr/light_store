@@ -1,166 +1,62 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 export default function SetupPage() {
-  const router = useRouter();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState(false);
-  const [loading, setLoading] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError('');
-    setSuccess(false);
-
-    if (password !== confirmPassword) {
-      setError('Passwords do not match');
-      return;
-    }
-
-    if (password.length < 6) {
-      setError('Password must be at least 6 characters');
-      return;
-    }
-
-    setLoading(true);
-
-    try {
-      const response = await fetch('/api/admin/setup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const result = await response.json();
-
-      if (result.success) {
-        setSuccess(true);
-        setTimeout(() => {
-          router.push('/admin/login');
-        }, 2000);
-      } else {
-        setError(result.error || 'Setup failed');
-        setLoading(false);
-      }
-    } catch (error) {
-      setError('Failed to create admin user. Please try again.');
-      setLoading(false);
-    }
-  };
-
-  if (success) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-slate-950 px-4">
-        <div className="w-full max-w-md">
-          <div className="rounded-2xl border border-green-500/20 bg-slate-900 p-8 text-center">
-            <div className="mb-4 text-4xl">✅</div>
-            <h1 className="mb-2 text-2xl font-bold text-white">Admin User Created!</h1>
-            <p className="mb-4 text-slate-400">Redirecting to login page...</p>
-            <Link
-              href="/admin/login"
-              className="inline-block rounded-lg bg-amber-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-amber-500"
-            >
-              Go to Login
-            </Link>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="flex min-h-screen items-center justify-center bg-slate-950 px-4">
       <div className="w-full max-w-md">
         <div className="rounded-2xl border border-slate-800 bg-slate-900 p-8 shadow-2xl">
-          <h1 className="mb-2 text-3xl font-bold text-white">Setup Admin User</h1>
+          <h1 className="mb-2 text-3xl font-bold text-white">Admin Setup Disabled</h1>
           <p className="mb-8 text-slate-400">
-            Create your first admin user to access the CMS dashboard
+            Admin user creation is restricted for security. Admin users must be created manually in
+            Supabase Dashboard.
           </p>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <label htmlFor="email" className="mb-2 block text-sm font-medium text-slate-300">
-                Email
-              </label>
-              <input
-                id="email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-4 py-3 text-white placeholder-slate-500 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500/20"
-                placeholder="admin@huslampe.no"
-              />
+          <div className="space-y-6">
+            <div className="rounded-lg border border-amber-500/20 bg-amber-500/10 p-4">
+              <p className="mb-3 text-sm font-medium text-amber-300">
+                To create an admin user, follow these steps:
+              </p>
+              <ol className="ml-4 list-decimal space-y-2 text-sm text-amber-200">
+                <li>Go to Supabase Dashboard → Authentication → Users</li>
+                <li>Click &quot;Add user&quot; and create the user</li>
+                <li>Copy the user&apos;s UUID</li>
+                <li>Go to SQL Editor and run the SQL below</li>
+              </ol>
             </div>
 
-            <div>
-              <label htmlFor="password" className="mb-2 block text-sm font-medium text-slate-300">
-                Password
-              </label>
-              <input
-                id="password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                minLength={6}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-4 py-3 text-white placeholder-slate-500 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500/20"
-                placeholder="••••••••"
-              />
-              <p className="mt-1 text-xs text-slate-500">Minimum 6 characters</p>
+            <div className="rounded-lg border border-slate-700 bg-slate-800 p-4">
+              <h3 className="mb-2 text-sm font-semibold text-slate-300">SQL Instructions</h3>
+              <p className="mb-2 text-xs text-slate-400">
+                After creating a user in Supabase Auth, run this SQL:
+              </p>
+              <code className="block rounded bg-slate-900 p-3 text-xs text-slate-300">
+                -- Get user ID (replace with your email)
+                <br />
+                SELECT id, email FROM auth.users WHERE email = &apos;kontakt@huslampe.no&apos;;
+                <br />
+                <br />
+                -- Add to admin_users (replace user-id-here with ID from above)
+                <br />
+                INSERT INTO admin_users (id, email, role, is_active)
+                <br />
+                VALUES (&apos;user-id-here&apos;, &apos;kontakt@huslampe.no&apos;, &apos;admin&apos;,
+                true);
+              </code>
             </div>
-
-            <div>
-              <label
-                htmlFor="confirmPassword"
-                className="mb-2 block text-sm font-medium text-slate-300"
-              >
-                Confirm Password
-              </label>
-              <input
-                id="confirmPassword"
-                type="password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                required
-                minLength={6}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-4 py-3 text-white placeholder-slate-500 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500/20"
-                placeholder="••••••••"
-              />
-            </div>
-
-            {error && (
-              <div className="rounded-lg border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-400">
-                {error}
-              </div>
-            )}
-
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full rounded-lg bg-amber-600 px-4 py-3 font-semibold text-white transition-colors hover:bg-amber-500 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {loading ? 'Creating admin user...' : 'Create Admin User'}
-            </button>
 
             <div className="text-center">
               <Link
                 href="/admin/login"
-                className="text-sm text-slate-400 hover:text-white"
+                className="inline-block rounded-lg bg-amber-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-amber-500"
               >
-                Already have an account? Sign in
+                Go to Login
               </Link>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
   );
 }
-

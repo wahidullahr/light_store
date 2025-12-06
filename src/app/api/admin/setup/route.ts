@@ -1,13 +1,23 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/lib/supabase/server';
+import { cookies } from 'next/headers';
+import { createServerClient } from '@/lib/supabase/server';
 
 /**
- * POST /api/admin/setup - Create first admin user
- * This is a one-time setup endpoint to create the first admin user
+ * POST /api/admin/setup - Create admin user (ADMIN ONLY)
+ * This endpoint is disabled - admin users must be created manually in Supabase
  * 
  * Body: { email: string, password: string }
  */
 export async function POST(request: NextRequest) {
+  // Disable this endpoint - admin creation is restricted
+  return NextResponse.json(
+    {
+      success: false,
+      error: 'Admin user creation is disabled. Please create admin users manually in Supabase Dashboard.',
+    },
+    { status: 403 }
+  );
   try {
     const { email, password } = await request.json();
 
