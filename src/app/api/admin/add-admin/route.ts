@@ -28,10 +28,10 @@ export async function POST(request: NextRequest) {
         get(name: string) {
           return cookieStore.get(name)?.value;
         },
-        set(name: string, value: string, options: any) {
+        set(name: string, value: string, options?: { path?: string; maxAge?: number; domain?: string; sameSite?: 'lax' | 'strict' | 'none'; httpOnly?: boolean; secure?: boolean }) {
           cookieStore.set({ name, value, ...options });
         },
-        remove(name: string, options: any) {
+        remove(name: string, options?: { path?: string; domain?: string }) {
           cookieStore.set({ name, value: '', ...options });
         },
       },
