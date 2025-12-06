@@ -111,8 +111,13 @@ CREATE POLICY "Only admins can manage site content" ON site_content
     )
   );
 
--- RLS Policies for admin_users (only admins can view)
-CREATE POLICY "Admins can view admin users" ON admin_users
+-- RLS Policies for admin_users
+-- Allow users to check their own admin status (needed for login verification)
+CREATE POLICY "Users can view their own admin record" ON admin_users
+  FOR SELECT USING (id = auth.uid());
+
+-- Allow admins to view all admin users
+CREATE POLICY "Admins can view all admin users" ON admin_users
   FOR SELECT USING (
     EXISTS (
       SELECT 1 FROM admin_users

@@ -25,34 +25,46 @@ This guide will help you set up and use the Huslampe CMS Dashboard.
 
 ## Step 3: Create Admin User
 
-### Option A: Using Supabase Dashboard
+### Option A: Using Setup Page (Easiest - Recommended)
 
-1. Go to Authentication > Users
+1. Navigate to: `http://localhost:3000/admin/setup`
+2. Enter your email and password
+3. Click "Create Admin User"
+4. You'll be redirected to the login page
+5. Sign in with your new credentials
+
+**Note**: This only works for the first admin user. After that, use Option B or C.
+
+### Option B: Using Supabase Dashboard
+
+1. Go to Authentication > Users in Supabase Dashboard
 2. Click "Add user"
 3. Enter email and password
 4. Create the user
-
-### Option B: Using SQL
+5. Copy the user's UUID
+6. Go to SQL Editor and run:
 
 ```sql
--- First, create auth user (you'll need to do this via Supabase Auth API or Dashboard)
--- Then link to admin_users table:
-
 INSERT INTO admin_users (id, email, role, is_active)
-VALUES ('user-uuid-here', 'admin@huslampe.no', 'admin', true);
+VALUES ('user-uuid-from-step-4', 'your-email@huslampe.no', 'admin', true);
 ```
 
-### Option C: Using API (Recommended)
+### Option C: Using API
 
-Create a setup script or use the Supabase Auth API to:
-1. Sign up a user
-2. Insert into `admin_users` table
+Use the setup API endpoint:
+
+```bash
+curl -X POST http://localhost:3000/api/admin/setup \
+  -H "Content-Type: application/json" \
+  -d '{"email":"admin@huslampe.no","password":"your-password"}'
+```
 
 ## Step 4: Access Admin Dashboard
 
 1. Start your development server: `npm run dev`
-2. Navigate to: `http://localhost:3000/admin/login`
-3. Sign in with your admin credentials
+2. **First time setup**: Navigate to `http://localhost:3000/admin/setup` to create your first admin user
+3. **After setup**: Navigate to `http://localhost:3000/admin/login`
+4. Sign in with your admin credentials
 
 ## Features
 

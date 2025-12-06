@@ -16,13 +16,19 @@ export default function AdminLoginPage() {
     setError('');
     setLoading(true);
 
-    const result = await signInAdmin(email, password);
+    try {
+      const result = await signInAdmin(email, password);
 
-    if (result.success) {
-      router.push('/admin');
-      router.refresh();
-    } else {
-      setError(result.error || 'Login failed');
+      if (result.success) {
+        router.push('/admin');
+        router.refresh();
+      } else {
+        setError(result.error || 'Login failed');
+        setLoading(false);
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      setError('An unexpected error occurred. Please try again.');
       setLoading(false);
     }
   };

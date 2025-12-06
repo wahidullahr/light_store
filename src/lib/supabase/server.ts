@@ -35,7 +35,7 @@ function getSupabaseAdmin() {
  * Supabase client for server-side operations
  * Use this in Server Components, API routes, and server actions
  * This client bypasses Row Level Security (RLS) policies
- * 
+ *
  * Note: This uses lazy initialization to avoid errors when environment variables
  * are not yet loaded during module import
  */
